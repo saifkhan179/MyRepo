@@ -6,7 +6,7 @@ variable "region" {
     default = "us-phoenix-1"
 }
 variable "namespace_name" {
-    default = ""
+    default = "jumpstart"
 }
 
 variable "compartment_ocid" {}
