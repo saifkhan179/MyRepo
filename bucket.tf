@@ -3,7 +3,7 @@ variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key_path" {}
 variable "region" {
-    default = ""
+    default = "us-phoenix-1"
 }
 variable "namespace_name" {
     default = "jumpstart"
