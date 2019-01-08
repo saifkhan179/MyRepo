@@ -1,0 +1,60 @@
+{
+    "steps": [
+        {
+            "name": "bucketSettings",
+            "label": "Bucket Settings",
+            "subLabel": {
+                "preValidation": "Configure the Bucket Settings",
+                "postValidation": "Done"
+            },
+            "type": "Common.Section",
+            "bladeTitle": "Bucket Settings",
+            "elements": [
+                {
+                    "name": "namespace_name",
+                    "type": "Common.TextBox",
+                    "label": "Namespace name ",
+                    "defaultValue": "",
+                    "toolTip": "Namespace is usually the name of the OCI Tenant.",
+                    "constraints": {
+                        "required": true,
+                        "regex": "^[a-zA-Z0-9_.-]*$",
+                        "validationMessage": "You need to enter the name of the OCI Tenant."
+                    },
+                    "visible": true
+                },
+                {
+                    "name": "region",
+                    "type": "Common.DropDown",
+                    "label": "Tenant Region",
+                    "defaultValue": "us-phoenix-1",
+                    "toolTip": "Enter the Region in which your Tenant is provisioned.",
+                    "constraints": {
+                        "allowedValues": [
+                            {
+                                "label": "us-phoenix-1",
+                                "value": "us-phoenix-1"
+                            },
+                            {
+                                "label": "us-ashburn-1",
+                                "value": "us-ashburn-1"
+                            },
+                            {
+                                "label": "eu-frankfurt-1",
+                                "value": "eu-frankfurt-1"
+                            },
+                            {
+                                "label": "uk-london-1",
+                                "value": "uk-london-1"
+                            }
+                        ]
+                    },
+                    "visible": true
+                }               
+               
+            ]
+        }
+        
+    ]
+}
+
