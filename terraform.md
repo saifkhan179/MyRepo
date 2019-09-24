@@ -6,19 +6,13 @@
 
 [Pre-Requisites](#pre-requisites)
 
+[Sign in to OCI Console and Generate API Keys](#sign-in-to-oci-console-and-generate-api-keys)
+
 [Installing Terraform](#installing-terraform)
 
 [Building Templates in OCI](#building-templates-in-oci)
 
-[Create Kubernetes Cluster](#create-kubernetes-cluster)
-
 [Install Kubectl, OCI CLI and configure OCI CLI](#install-kubectl,-oci-cli-and-configure-oci-cli)
-
-[Download get-kubeconfig.sh file and Initialize your environment](#download-get-kubeconfig.sh-file-and-initialize-your-environment)
-
-[Starting the Kubernetes Dashboard](#starting-the-kubernetes-dashboard)
-
-[Deploying a Sample Nginx App on Cluster Using kubectl](#deploying-a-sample-nginx-app-on-cluster-using-kubectl)
 
 [Delete the resources](#delete-the-resources)
 
@@ -61,12 +55,53 @@ Oracle Cloud Infrastructure Container Engine for Kubernetes is a fully-managed, 
 
 5. Connecting to a compute instance: https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/accessinginstance.htm
 
-## Installing Terraform
+
+
+## Sign in to OCI Console and Generate API Keys
 
 * **Tenant Name:** {{Cloud Tenant}}
 * **User Name:** {{User Name}}
 * **Password:** {{Password}}
 * **Compartment:**{{Compartment}}
+
+
+1. Sign in using your tenant name, user name and password. Use the login option under **Oracle Cloud Infrastructure**
+
+<img src="https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/qloudable/Grafana/img/Grafana_015.PNG" alt="image-alt-text">
+
+2. Click the Apps icon in the toolbar and select Git-Bash to open a terminal window.
+
+<img src="https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/qloudable/OCI_Quick_Start/img/RESERVEDIP_HOL006.PNG" alt="image-alt-text">
+
+3. Change directory to .oci, Enter command: 
+```
+cd ~/.oci
+```
+
+4. Generate API Keys, Enter commands: 
+```
+openssl genrsa -out oci_api_key.pem 2048 
+```
+```
+openssl rsa -pubout -in oci_api_key.pem -out oci_api_key_public.pem
+```                
+```
+cat oci_api_key_public.pem
+```
+
+5. Now we have created the API signing key and we need to generate the fingerprint for your user. 
+
+6. Switch to OCI Console and Click Human icon (top right) and then your username. In the user details, Click **Add Public Key**. Copy the public key generated earlier and paste it. 
+
+insert picture
+
+7. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this: 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef
+
+Insert picture
+
+
+
+## Installing Terraform
 
 1. To install Terraform, execute the following steps:
 
