@@ -8,6 +8,8 @@
 
 [Sign in to OCI Console and Generate API Keys](#sign-in-to-oci-console-and-generate-api-keys)
 
+[Collecting Tenancy and User information](#collecting-tenancy-and-user-information)
+
 [Installing Terraform](#installing-terraform)
 
 [Building Templates in OCI](#building-templates-in-oci)
@@ -91,14 +93,33 @@ cat oci_api_key_public.pem
 
 5. Now we have created the API signing key and we need to generate the fingerprint for your user. 
 
-6. Switch to OCI Console and Click Human icon (top right) and then your username. In the user details, Click **Add Public Key**. Copy the public key generated earlier and paste it. 
+6. Switch to OCI Console and Click Human icon (top right) and then Click your username. In the user details, Click **Add Public Key**. Copy the public key generated earlier and paste it. 
 
 insert picture
 
-7. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this: 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef
+7. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this: ```12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef```
 
 Insert picture
 
+## Collecting Tenancy and User Information
+
+1. Switch to OCI Console and Click Human icon (top right) and click Tenancy. You should see Tenancy Information Page. Click ```Copy``` to copy the Tenancy OCID. Switch to Notepad and paste the OCID.
+
+2. Switch to OCI Console and Click Human icon (top right) and click your username. Under User Information page Click ```Copy``` to copy the User OCID. Switch to Notepad and paste the OCID.
+
+3. In the same page under API Keys copy the fingerprint value and paste it in the Notepad. 
+
+4. Now check which region you are logged into. If you see US East (Ashburn) on the top then switch to Notepad and write down ```region = us-ashburn-1```.
+
+5. Switch to Git Bash window and change the directory to ```.oci``` by entering command:
+```
+cd ~/.oci
+```
+
+6. Copy the Private key value and paste it in the Notepad. 
+```
+cat oci_api_key.pem
+```
 
 
 ## Installing Terraform
