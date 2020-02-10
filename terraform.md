@@ -14,7 +14,7 @@
 
 [Building Templates in OCI](#building-templates-in-oci)
 
-[Install Kubectl, OCI CLI and configure OCI CLI](#install-kubectl,-oci-cli-and-configure-oci-cli)
+[Terraform Initialization](#terraform-initialization)
 
 [Delete the resources](#delete-the-resources)
 
@@ -177,7 +177,7 @@ resource "oci_core_virtual_network" "ExampleVCN" {
 ```
 - This will create a virtual cloud network in your OCI Tenancy.
 
-## Initialization 
+## Terraform Initialization 
 
 - The very first which is run after building templates is the ```terraform init``` command. This command initializes Terraform in the current working directory and various local settings and data that will be used by subsequent commands.
 
