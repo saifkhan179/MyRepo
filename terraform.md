@@ -148,16 +148,16 @@ insert picture
 
 1. **Provider Section** 
 
-- The Provider block is used to specify a particular provider like ```oci``` , ```aws``` or ```azure```. A provider is responsible for creating and managinf resources. You can also provide multiple provider blocks in a terraform configuration.
+- The Provider block is used to specify a particular provider like ```oci``` , ```aws``` or ```azure```. A provider is responsible for creating and managing resources. You can also provide multiple provider blocks in a terraform configuration.
 
 ```
 
 provider "oci" {
-  tenancy_ocid = "${var.tenancy_ocid}"
-  user_ocid = "${var.user_ocid}"
-  fingerprint = "${var.fingerprint}"
-  private_key_path = "${var.private_key_path}"
-  region = "${var.region}"
+  tenancy_ocid = ""
+  user_ocid = ""
+  fingerprint = ""
+  private_key_path = ""
+  region = ""
   disable_auto_retries = "false"
 }
 ```
@@ -170,49 +170,43 @@ provider "oci" {
 ```
 resource "oci_core_virtual_network" "ExampleVCN" {
   cidr_block = "10.1.0.0/16"
-  compartment_id = "${var.compartment_ocid}"
+  compartment_id = ""
   display_name = "TFExampleVCN"
   dns_label = "tfexamplevcn"
 }
 ```
 - This will create a virtual cloud network in your OCI Tenancy.
 
-3. **Datasources Section**
+## Initialization 
 
-- This section is used to fetch the OCI Tenant details for some specific resources. For example, we can provide the Availability Domain for a Tenant to provision our resources. 
+- The very first which is run after building templates is the ```terraform init``` command. This command initializes Terraform in the current working directory and various local settings and data that will be used by subsequent commands.
 
-```
-data "oci_identity_availability_domain" "AD" {
-    compartment_id = "${var.tenancy_ocid}"
-    ad_number = 1
- 
-}
-```
-4. **Variables Section**
-
-- Input variables serve as parameters for the Terraform Configuration. A set of dynamic values can be set with the help of vaiables. In the above Resource section, the value for compartment ocid is set as a variable. 
-
-- This helps us to use various compartments in OCI Tenant as per our use and not alter the main resource every time for deployment.
+1. Run the command terraform init command to initialize the environment. 
 
 ```
-variable "compartment_ocid" {
-  default = ""
-}
+terraform init
 ```
+After initializing the environment, we can run other commands to provision resources in OCI. 
 
-5. **Outputs Section**
-
-- Outputs define values that will be highlighted to the user when Terraform is done provisioning resources.
-
-- Resource blocks managed by Terraform export attributes whose values can be used elsewhere in the configuration. Outputs are a way to expose some of that information to the user. 
+2. Now run the plan command. This command generates an execution plan for the configuration files and then determines what actions are necessary to achieve the desired state. 
 
 ```
-output "VCN_CIDR" {
-  value = ["${oci_core_virtual_network.ExampleVCN.cidr_block}"]
-}
+terraform plan 
 ```
 
+3. Now run the apply command. This command will Apply changes to the configuration files and provision the resources. 
 
+```
+terraform apply
+```
+
+If terraform apply failed with an error, read the error message and fix the error that occurred. At this stage, it is likely to be a syntax error in the configuration.
+
+If the plan was created successfully, Terraform will now pause and wait for approval before proceeding. If anything in the plan seems incorrect or dangerous, it is safe to abort here with no changes made to your infrastructure. In this case the plan looks acceptable, so type yes at the confirmation prompt to proceed.
+
+
+
+Executing the plan will take few minutes until the provisioning of resources is complete. You can now check the resources in the compartment in the OCI Console.
 
 
 
