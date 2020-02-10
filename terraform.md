@@ -10,7 +10,7 @@
 
 [Collecting Tenancy and User information](#collecting-tenancy-and-user-information)
 
-[Installing Terraform](#installing-terraform)
+[Installing Terraform and Setting up Provider for OCI](#installing-terraform-and-setting-up-provider-for-oci)
 
 [Building Templates in OCI](#building-templates-in-oci)
 
