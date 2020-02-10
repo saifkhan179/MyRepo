@@ -16,11 +16,11 @@
 
 [Terraform Initialization](#terraform-initialization)
 
-[Delete the resources](#delete-the-resources)
-
 ## Overview
 
-Oracle Cloud Infrastructure Container Engine for Kubernetes is a fully-managed, scalable, and highly available service that you can use to deploy your containerized applications to the cloud. Use Container Engine for Kubernetes (sometimes abbreviated to just OKE) when your development team wants to reliably build, deploy, and manage cloud-native applications. You specify the compute resources that your applications require, and Container Engine for Kubernetes provisions them on Oracle Cloud Infrastructure in an existing OCI tenancy.
+Terraform is an open-source infrastructure as code software tool created by HashiCorp. It enables users to define and provision a datacenter infrastructure using a high-level configuration language known as Hashicorp Configuration Language (HCL), or optionally JSON.
+
+In this Lab we will be going through the various basic concepts of terraform by provisioning resources in Oracle Cloud Infrastructure (OCI).
 
 **Some Key points;**
 
@@ -122,7 +122,7 @@ cat oci_api_key.pem
 ```
 
 
-## Installing Terraform
+## Installing Terraform and Setting up Provider for OCI
 
 1. To install Terraform, execute the following steps:
 
@@ -136,11 +136,31 @@ https://www.terraform.io/downloads.html
 
 - The final step is to add this binary in your system ```PATH```.
 
-2. Verifying the Installation 
+2. Click on ```Apps Icon``` and Open ```Visual Studio Code```
 
-- Once the ```terraform``` binary has been added to PATH, execute the terraform command in your local terminal. You should see the help output similar to as shown in the below picture: 
+insert picture 
+
+3. Verifying the Installation 
+
+- Click on Terminal and choose New Terminal to open terminal in Visual Studio Code.  
+
+- Once the ```terraform``` binary has been added to PATH, execute the ```terraform --version``` command in the terminal window. You should see the help output similar to as shown in the below picture: 
 
 insert picture
+
+4. Create a directory named ```terraformOCI``` by excuting the below command:
+```
+mkdir -p terraformOCI
+```
+5. On top left corner, click on `File` and choose `Open Folder`
+
+ip 
+
+6. Paste `D:/Photonuser` in the dropdown and click on `Enter`.
+ip
+7. Once you click Enter, you will be navigated to `AppStreamUsers(D:)/PhotonUser` directory where terraformOCI folder is created. Select `terraformOCI` and click on `Select Folder`
+
+8. Now terraformOCI folder is opened in Visual Studio Code.
 
 ## Building Templates in OCI
 
@@ -156,11 +176,24 @@ provider "oci" {
   tenancy_ocid = ""
   user_ocid = ""
   fingerprint = ""
-  private_key_path = ""
+  private_key_path = "./private-key"
   region = ""
   disable_auto_retries = "false"
 }
 ```
+- Inside the folder terraformOCI, create a file named `provider.tf` by clicking on `new file` symbol beside the folder name as shown below.
+- Paste the above provider block in the ```provider.tf``` file and save it. Copy the values for the respective fields from the earlier section.
+
+```Note:
+tenancy_ocid: OCID of your Tenancy
+user_ocid: OCID of your Tenancy
+fingerprint: fingerprint of the user
+private_key_path: path for the private key
+region: region of your Tenancy
+```
+
+- create a file named private-key and paste the contents of the private api key generated earlier.
+
 2. **Resource Section**
 
 - The Resource Block defines a resource that exists within the infrastructure. A resource can a virtual machine or block volume or a virtual network.
@@ -176,6 +209,10 @@ resource "oci_core_virtual_network" "ExampleVCN" {
 }
 ```
 - This will create a virtual cloud network in your OCI Tenancy.
+
+- To create a VCN, create a file named examplevcn.tf. Copy the above resource block and save the file.
+
+- You should have three files namely provider.tf, examplevcn.tf and private-key. In the next section we will run some terraform commands to provision resources in Cloud.
 
 ## Terraform Initialization 
 
@@ -208,6 +245,8 @@ If the plan was created successfully, Terraform will now pause and wait for appr
 
 Executing the plan will take few minutes until the provisioning of resources is complete. You can now check the resources in the compartment in the OCI Console.
 
+
+**Congratulations! You have successfully completed the lab**
 
 
 
