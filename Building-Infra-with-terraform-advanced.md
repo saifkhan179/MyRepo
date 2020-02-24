@@ -208,7 +208,7 @@ cd terraformOCI
 
 - These configurations will help us deploy a Virtual Machine, VCN in a compartment and run some shell scripts.
 
-### Working with Variables
+## Working with Variables
 
 - We can create infrastructure by hard-coding values to the parameters of the resources but this can be avoided and we can parameterize our resources by referencing variables in our configurations. In this section we will learn to work with variables.
 
