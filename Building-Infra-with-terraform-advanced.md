@@ -109,7 +109,7 @@ cat oci_api_key_public.pem
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/oci8.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D) 
 
-8. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this: 
+8. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this:
 
 ```12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef```
 
@@ -145,7 +145,7 @@ cat oci_api_key_public.pem
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta7.PNG?sp=r&st=2020-02-22T00:48:09Z&se=2021-12-31T08:48:09Z&spr=https&sv=2019-02-02&sr=b&sig=9i7pPE%2FdI6%2BOE061SFcTfJS%2F6ILel%2Fp3B8pCRmOMKRM%3D)
 
-6. Switch to OCI Console. Click on the Menu button and Scroll Down to see ```Indentity``` under `Governance and Administration`. Now click on Identity and then Compartments. You should see a list of Compartments.
+6. Switch to OCI Console. Click on the Menu button and Scroll Down to see ```Identity``` under `Governance and Administration`. Now click on Identity and then Compartments. You should see a list of Compartments.
 
 - Hover over your compartment OCID and click copy. Switch to Notepad and paste it.
 
@@ -181,6 +181,7 @@ cat oci_api_key.pem
 
 
 3. Create a directory named ```terraformOCI``` by excuting the below command in Visual Studio Code
+
 ```
 mkdir terraformOCI
 
@@ -226,7 +227,7 @@ variable "region" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta13.PNG?sp=r&st=2020-02-22T00:54:10Z&se=2021-12-31T08:54:10Z&spr=https&sv=2019-02-02&sr=b&sig=pKKaZaPz9YE0xG%2BgFqpzQMzWf3GCP5xMK9RcnlbBmNQ%3D)
 
-- Similarly, you can create variables for all the static values used for configurations. In the below snippet, a list of variables are defined that are needed for configurations in coming sections. Add these variables in the `variables.tf` file and Save it. 
+- Similarly, you can create variables for all the static values used for configurations. In the below snippet, a list of variables are defined that are needed for configurations in coming sections. Add these variables in the `variables.tf` file and **Save** it. 
 
 ```
 variable "tenancy_ocid" {
@@ -279,7 +280,7 @@ variable "InstanceImageOCID" {
 
 2. Using Variables in configurations
 
-- Create a new fle caleed `provider.tf` and copy the below code into file and Save it. The variables defined earlier in the variables.tf file are now being refrenced in the provider.tf file. 
+- Create a new fle caleed `provider.tf` and copy the below code into file and **Save** it. The variables defined earlier in the variables.tf file are now being refrenced in the provider.tf file. 
 
 ```
 provider "oci" {
@@ -423,7 +424,7 @@ data "oci_identity_availability_domains" "ADs" {
 }
 
 ```
-- Switch to Visual Studio Code, you should be in the `terraformOCI` folder. Create a file named `network.tf`, copy the above snippet and Save it.
+- Switch to Visual Studio Code, you should be in the `terraformOCI` folder. Create a file named `network.tf`, copy the above snippet and **Save** it.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta20.PNG?sp=r&st=2020-02-22T00:56:57Z&se=2021-12-31T08:56:57Z&spr=https&sv=2019-02-02&sr=b&sig=BU8Ce5NstqthrBPSjtPU8Ma1wx63w8y4sCXsF%2Bl40CY%3D)
 
@@ -505,7 +506,7 @@ resource "oci_core_instance" "TFInstance" {
 
 - To illustrate the example of provisioners we need to create an instance first. So Open Visual Studio Code and create a file named ```compute.tf```
 
-- Copy the below code and Save the file.
+- Copy the below code and **Save** the file.
 
 ```
 resource "oci_core_instance" "TFInstance" {
@@ -543,7 +544,7 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta26.PNG?sp=r&st=2020-02-22T01:00:04Z&se=2021-12-31T09:00:04Z&spr=https&sv=2019-02-02&sr=b&sig=uofEwldieHiSTIk01xXbS5fZrhbhkZWOdwdlJ9F6OjM%3D)
 
-- Now let us create a file named provisioners.tf. Copy the below code and Save the file. 
+- Now let us create a file named provisioners.tf. Copy the below code and **Save** the file. 
 
 ```
 resource "null_resource" "provisioner" {
@@ -579,7 +580,7 @@ resource "null_resource" "provisioner" {
 
 - Along with the provisioners.tf file you also need to create another file called ```bootstrap.sh```. We will be using this file to copy it from local onto the TFInstance resource and then execute it.
 
-- Copy the below code in the `bootstrap.sh` file and then Save it.
+- Copy the below code in the `bootstrap.sh` file and then **Save** it.
 
 ```
 yum install -y httpd
@@ -596,8 +597,6 @@ systemctl restart  firewalld
 - If you check your terraformOCI folder, you should see three additional files created namely, compute.tf, provisioner.tf and bootstrap.sh. 
 
 - Now run the ```terraform init``` and ```terraform apply``` commands to create resources. Answer ```yes``` when prompted, terraform starts creating the resources.
-
-ta30
 
 - As you can see the `TFInstance` gets created first and then the provisioners. File provisioner copies the shell script from terraformOCI folder onto the TFInstance and remote-exec provisioner runs the script on the machine. 
 
@@ -641,8 +640,6 @@ output "InstancePublicIP" {
 ```
 
 - Run ```terraform apply``` command to view the outputs. 
-
-ta31
 
 - Multiple output variables can be defined to retrieve values as per requirement.
 
