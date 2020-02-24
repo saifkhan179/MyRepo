@@ -1,4 +1,4 @@
-# Building Infrastructure using Terraform.
+# Building Infrastructure using Terraform - Advanced.
 
 ## Table of Contents
 
@@ -111,7 +111,9 @@ cat oci_api_key_public.pem
 
 8. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this:
 
-```12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef```
+```
+12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-3.PNG?sp=r&st=2020-02-11T06:20:16Z&se=2021-12-31T14:20:16Z&spr=https&sv=2019-02-02&sr=b&sig=AMmt%2BT13pGwdKhW2bZgSGc6xSwxYs8ph1wLJajZGUvU%3D)
 
@@ -274,7 +276,7 @@ variable "InstanceImageOCID" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta14.PNG?sp=r&st=2020-02-22T00:54:44Z&se=2021-12-31T08:54:44Z&spr=https&sv=2019-02-02&sr=b&sig=7a3M3s9zyjdYDhdUObtgzxuiVAZAS0ymQywKxF3wOpY%3D)
 
-- After copying the above variables provide the missing values for tenancy_ocid, user_ocid, compartment_ocid and fingerprint from Section 2 and ```Save``` the file.
+- After copying the above variables provide the missing values for tenancy_ocid, user_ocid, compartment_ocid and fingerprint from Section 2 and **Save** the file.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta18.PNG?sp=r&st=2020-02-22T00:55:32Z&se=2021-12-31T08:55:32Z&spr=https&sv=2019-02-02&sr=b&sig=M%2Fv4MxQbqMu%2Fc3fXZRa%2FtPKUgQEhMo1UDDE8GBF15JU%3D)
 
@@ -362,13 +364,14 @@ variable "InstanceImageOCID" {
 ```
 
 - The variables declared as maps can be referenced as shown below
+
 ```
 image = "${var.InstanceImageOCID[var.region]}"
 ```
 
 - The image parameter gets the value of the ocid depending upon the value of the region specified.
 
-- ```In this lab we will use varible defaults method to assign our variables.```
+- **In this lab we will use varible defaults method to assign our variables.***
 
 
 ## Understanding Resource Dependencies
@@ -422,8 +425,8 @@ resource "oci_core_route_table" "ExampleRT" {
 data "oci_identity_availability_domains" "ADs" {
   compartment_id = "${var.tenancy_ocid}"
 }
-
 ```
+
 - Switch to Visual Studio Code, you should be in the `terraformOCI` folder. Create a file named `network.tf`, copy the above snippet and **Save** it.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta20.PNG?sp=r&st=2020-02-22T00:56:57Z&se=2021-12-31T08:56:57Z&spr=https&sv=2019-02-02&sr=b&sig=BU8Ce5NstqthrBPSjtPU8Ma1wx63w8y4sCXsF%2Bl40CY%3D)
@@ -619,6 +622,7 @@ systemctl restart  firewalld
 1. Defining Outputs 
 
 - Please see the example below to define an output variable. It shows us a way to output the Public IP of the Instance back to the user.
+
 ```
 output "InstancePublicIP" {
   value = ["${data.oci_core_vnic.InstanceVnic.public_ip_address}"]
