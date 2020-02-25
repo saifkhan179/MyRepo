@@ -78,9 +78,6 @@ In this Lab we will be going through the advanced concepts of terraform by provi
 cd /c/Users/PhotonUser
 ```
 ```
-mkdir oci
-```
-```
 cd oci
 ```
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-1.PNG?sp=r&st=2020-02-11T02:00:40Z&se=2021-12-31T10:00:40Z&spr=https&sv=2019-02-02&sr=b&sig=q%2FVm84zb%2FAhY6qsWlN8M8%2B1A5SLdPphRsw%2FLBVuJ4gU%3D)
