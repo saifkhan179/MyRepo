@@ -548,6 +548,7 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp
 
 ```
 resource "null_resource" "provisioner" {
+    depends_on = ["oci_core_instance.TFInstance"]
     provisioner "file" {
         connection {
             agent = false
@@ -570,7 +571,9 @@ resource "null_resource" "provisioner" {
         }
         inline = [
             "chmod +x ~/bootstrap.sh",
-            "sudo ~/bootstrap.sh",
+            "sudo su",
+            "sh ~/bootstrap.sh"
+
         ]
     }
 }
@@ -583,8 +586,8 @@ resource "null_resource" "provisioner" {
 - Copy the below code in the `bootstrap.sh` file and then **Save** it.
 
 ```
+yum update -y
 yum install -y httpd
-
 systemctl enable  httpd.service
 systemctl start  httpd.service
 firewall-offline-cmd --add-service=http
@@ -597,6 +600,8 @@ systemctl restart  firewalld
 - If you check your terraformOCI folder, you should see three additional files created namely, compute.tf, provisioner.tf and bootstrap.sh. 
 
 - Now run the ```terraform init``` and ```terraform apply``` commands to create resources. Answer ```yes``` when prompted, terraform starts creating the resources.
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta30.PNG?sp=r&st=2020-02-26T04:57:18Z&se=2020-12-31T12:57:18Z&spr=https&sv=2019-02-02&sr=b&sig=GdXdv9Yd8Puj%2BB10Aaee2JQBvX0QRlApD6ca2OR792Q%3D)
 
 - As you can see the `TFInstance` gets created first and then the provisioners. File provisioner copies the shell script from terraformOCI folder onto the TFInstance and remote-exec provisioner runs the script on the machine. 
 
