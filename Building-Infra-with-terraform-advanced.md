@@ -647,6 +647,8 @@ output "InstancePublicIP" {
 
 - Run ```terraform apply``` command to view the outputs. 
 
+- This completes provisioning all of the resources for this lab. Now run ```terraform destroy``` to tear down the running infrastructure.
+
 - Multiple output variables can be defined to retrieve values as per requirement.
 
 
