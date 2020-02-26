@@ -570,10 +570,8 @@ resource "null_resource" "provisioner" {
             private_key = "${file(var.ssh_private_key)}"
         }
         inline = [
-            "chmod +x ~/bootstrap.sh",
-            "sudo su",
-            "sh ~/bootstrap.sh"
-
+            "chmod +x ~/bootstrap.sh",            
+            "sudo ~/bootstrap.sh",
         ]
     }
 }
