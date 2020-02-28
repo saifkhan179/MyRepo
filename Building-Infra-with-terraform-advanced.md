@@ -20,6 +20,8 @@
 
 [Output Variables](#output-variables)
 
+[Working with Modules](#working-with-modules)
+
 
 ## Overview
 
@@ -78,9 +80,12 @@ In this Lab we will be going through the advanced concepts of terraform by provi
 cd /c/Users/PhotonUser
 ```
 ```
-cd oci
+mkdir ocikeys
 ```
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-1.PNG?sp=r&st=2020-02-11T02:00:40Z&se=2021-12-31T10:00:40Z&spr=https&sv=2019-02-02&sr=b&sig=q%2FVm84zb%2FAhY6qsWlN8M8%2B1A5SLdPphRsw%2FLBVuJ4gU%3D)
+```
+cd ocikeys
+```
+ta31
 
 4. Now generate API Keys, Enter commands: 
 ```
@@ -104,7 +109,7 @@ cat oci_api_key_public.pem
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta2.PNG?sp=r&st=2020-02-22T00:45:38Z&se=2021-12-31T08:45:38Z&spr=https&sv=2019-02-02&sr=b&sig=2rjwWGSgzwnKrVc5ZWY6lOmvJDjOzIGcoxZBCRvDHro%3D)
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/oci8.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D) 
+ta32 
 
 8. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this:
 
@@ -112,7 +117,7 @@ cat oci_api_key_public.pem
 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef
 ```
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-3.PNG?sp=r&st=2020-02-11T06:20:16Z&se=2021-12-31T14:20:16Z&spr=https&sv=2019-02-02&sr=b&sig=AMmt%2BT13pGwdKhW2bZgSGc6xSwxYs8ph1wLJajZGUvU%3D)
+ta33
 
 ## Collecting Tenancy and User Information
 
@@ -643,11 +648,43 @@ output "InstancePublicIP" {
 }
 ```
 
+ta34
+
 - Run ```terraform apply``` command to view the outputs. 
+
+ta35
 
 - This completes provisioning all of the resources for this lab. Now run ```terraform destroy``` to tear down the running infrastructure.
 
 - Multiple output variables can be defined to retrieve values as per requirement.
+
+## Working with Modules
+
+- Throughout the earlier sections we have been creating configuration files and deploying resources in cloud. But as the infrastructure grows it becomes difficult to manage all these configurations. 
+
+- As a result, growing infrastructure can pose a few problems like lack of organization, a lack of reusability and can also pose difficulty for various teams in an organization.
+
+- Modules in Terraform are self-contained packages of Terraform configurations that are managed as a group. Modules are used to create reusable components, improve organization, and to treat pieces of infrastructure as a black box.
+
+- In this section we will learn to divide our configuration in different modules and use these modules wherever necessary.
+
+- Click on Terminal and choose New Terminal to open terminal in Visual Studio Code. You should be in the `terraformOCI` folder
+
+- Change the directory to PhotonUser and then create a new folder called ```terraformModules``` in the terminal. Execute the following commands: 
+
+```
+cd D:\PhotonUser
+```
+```
+mkdir terraformModules
+```
+```
+cd terraformModules
+```
+
+- Now Click File and then select Open Folder. This will give you a list of folders present in the directory. Select the newly created folder `terraformModules` and click ```Select Folder```.
+
+ta37
 
 
 
