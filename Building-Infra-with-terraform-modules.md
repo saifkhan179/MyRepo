@@ -319,7 +319,77 @@ module "network" {
 ```
 - After copying **Save** the file.
 
+- While writing the configuration for modules, the source of the modules should be specified first and then the variables used in the modules are defined later. As seen in the above snippet, the source for our module is defined first and then the variables. 
 
+- If you Open the network folder, you should see three configuration files namely `network.tf`, `variables.tf` and `output.tf`. These are configuration files for our network module.
+
+- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands. Answer Yes when prompted.
+
+- This will provision a VCN in your Tenancy. Now let us create another module to provision a compute instance.
+
+2. Compute module
+
+- At this point, you should be in the `terraformModules` folder. If not then Switch to Visual Studio Code. 
+
+- Download the compute Module by executing the below command. You should get a zip file in your folder. Once done unzip the file.
+
+```
+curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/instance.zip?sp=r&st=2020-03-01T20:01:59Z&se=2021-01-01T04:01:59Z&spr=https&sv=2019-02-02&sr=b&sig=BpHXJ%2FBeXePdJKBhVuP2OLQxTOXma%2Fg4ZvmIlDiTa6c%3D" -o compute.zip
+```
+```
+unzip compute.zip
+```
+
+- After uzipping, you should see a `compute` folder in terraformModules.
+
+- Now we need to update the main.tf file to provision a compute instance. Add the below code snippet to the file.
+
+```
+module "instance" {
+    source = "./instance"
+    compartment_ocid = "${var.compartment_ocid}"
+    AD = "${var.AD}"
+    InstanceImageOCID = "${var.InstanceImageOCID}"
+    InstanceShape = "${var.InstanceShape}"
+    region = "${var.region}"
+    ssh_public_key = "${var.ssh_public_key}" 
+    ssh_private_key = "${var.ssh_private_key}"
+    subnet = "${module.network.subnet_id}"  
+    tenancy_ocid = "${var.tenancy_ocid}"
+}
+```
+
+- Create a file called ```bootstrap.sh```. This file is used by the compute module to install packages while booting the instance. Click on New File option to create the file and then copy the below code snippet. 
+
+```
+#!/bin/bash
+
+yum update -y
+yum install -y httpd
+systemctl enable  httpd.service
+systemctl start  httpd.service
+firewall-offline-cmd --add-service=http
+systemctl enable  firewalld
+systemctl restart  firewalld
+```
+
+- Download the private ssh key for the compute instance by executing the below command in terminal. 
+
+```
+curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp=r&st=2020-02-11T23:40:23Z&se=2022-01-01T07:40:23Z&spr=https&sv=2019-02-02&sr=b&sig=pKQqknoxzn2Xy2Svv%2Bn%2BMJcudaUuSWEso9tm3q81xhY%3D" -o ckey
+```
+
+- In addition to the files you had in the terraformModules folder, you should also have an updated main.tf file, bootstrap.sh file, ckey and compute folder.
+
+- Now let us run terraform commands to provision a compute instance in the VCN created earlier. Run ```terraform init``` and ```terraform apply``` commands in the terminal.
+
+
+- This will provision a compute instance and also run the bootstrap.sh file to update and install packages.
+
+
+
+
+ 
 
 
 
