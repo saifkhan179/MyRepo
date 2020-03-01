@@ -387,6 +387,26 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp
 - This will provision a compute instance and also run the bootstrap.sh file to update and install packages.
 
 
+3. Creating outputs with modules
+
+- Create a new file called ```outputs.tf``` by clicking the `New file` option. Copy the below Code and **Save** the file. 
+
+```
+output "InstancePrivateIP" {
+  value = "${module.instance.InstancePrivateIP}"
+}
+
+output "InstancePublicIP" {
+  value = "${module.instance.InstancePublicIP}"
+}
+```
+
+- Now run the ```terraform apply``` command to get the outputs. Running the command will spew out the Public and Private IPs of the compute instance. 
+
+
+## Changing Configuration in Modules
+
+- 
 
 
  
