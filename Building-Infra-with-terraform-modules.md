@@ -210,6 +210,149 @@ cd terraformOCI
 
 - These configurations will help us deploy a Virtual Machine, VCN in a compartment and run some shell scripts.
 
+## Working with Modules
+
+- Terraform helps us create configuration files and deploy resources in cloud. But as the infrastructure grows it becomes difficult to manage all these configurations. As a result, growing infrastructure can pose a few problems like lack of organization, a lack of reusability and can also pose difficulty for various teams in an organization.
+
+- Modules in Terraform are self-contained packages of Terraform configurations that are managed as a group. Modules are used to create reusable components, improve organization, and to treat pieces of infrastructure as a black box.
+
+- In this section we will learn to divide our configuration in different modules and use these modules wherever necessary.
+
+1. Network Module
+
+- Here we will be creating the network module and try to provision it in our tenancy.
+
+- Switch to Visual Studio Code, you should be in the `terraformModules` folder. 
+
+- Download the network Module by executing the below command. You should get a zip file in your folder. Once done unzip the file.
+
+```
+curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/network.zip?sp=r&st=2020-03-01T19:44:58Z&se=2021-01-01T03:44:58Z&spr=https&sv=2019-02-02&sr=b&sig=AwlfUqbQbir0by0XJ1kZcgqXJqAOi80M2MSUdKU00ac%3D" -o network.zip
+```
+```
+unzip network.zip
+```
+
+- After uzipping, you should see a `network` folder in terraformModules.
+
+- Let us create a New file called ```variables.tf``` in Visual Studio Code under the folder ```terraformModules``` by clicking on the `New File` symbol present beside the folder name. Add this snippet to contents of the variables.tf file and **Save** it.
+
+```
+variable "tenancy_ocid" {
+  default = ""
+}
+
+variable "user_ocid" {
+  default = ""
+}
+
+variable "fingerprint" {
+  default = ""
+}
+
+variable "private_key_path" {
+  default = "./private-key"
+}
+
+variable "region" {
+  default = ""
+}
+
+variable "compartment_ocid" {
+  default = ""
+}
+
+
+variable "ssh_public_key" {
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0nysWs1m+sdoaK15mMIvLEiN+ofDhi9qNEXbPby+a76cJl4zD26P3cErUjE2HVLizuLoec5XzrcKLOz53/0f9hulwZRzapsbIZlPDLBoL+HcuqRyD23YMf6ETg780E3cKZvDVtVCKZg0R2H8QGs9yrnKHt0zhXp6FwKuinfVvMhY3rOM23bYRoI3Y4WiREMSDWLkNTXxAJqUPtcxPVVU388OpWznAsEYiioiwt/KsNU1MECpcK93vihdUMJ15GamPptplS+0Bu1nmYHOvkp9UHEsq+SNKw57sO8S2dgJtpDmT3Hyth8ZvgW+pYOEGAD7PwxFfUm2km/XuRUDF7HfB computekey"
+}
+
+variable "ssh_private_key" {
+  default = "./ckey"
+}
+
+# Choose an Availability Domain
+variable "AD" {
+  default = "1"
+}
+
+variable "InstanceShape" {
+  default = "VM.Standard1.1"
+}
+
+variable "InstanceImageOCID" {
+  type = "map"
+  default = {    
+    us-phoenix-1 = "ocid1.image.oc1.phx.aaaaaaaav4gjc4l232wx5g5drypbuiu375lemgdgnc7zg2wrdfmmtbtyrc5q"
+    us-ashburn-1   = "ocid1.image.oc1.iad.aaaaaaaautkmgjebjmwym5i6lvlpqfzlzagvg5szedggdrbp6rcjcso3e4kq"
+    eu-frankfurt-1 = "ocid1.image.oc1.eu-frankfurt1.aaaaaaaajdge4yzm5j7ci7ryzte7f3qgcekljjw7p6nexhnsvwt6hoybcu3q"
+  }
+}
+```
+
+- The values for `tenancy_ocid`, `user_ocid`, `fingerprint`, `region` and `compartment_ocid` can be found in Section 2 of this lab. 
+
+- Now create ```provider.tf``` file and copy the below snippet and **Save** the file.
+
+```
+provider "oci" {
+  tenancy_ocid         = "${var.tenancy_ocid}"
+  user_ocid            = "${var.user_ocid}"
+  fingerprint          = "${var.fingerprint}"
+  private_key_path     = "${var.private_key_path}"
+  region               = "${var.region}"
+  disable_auto_retries = "true"
+}
+```
+
+- Create another file called ```private-key```. Copy the value of `oci_api_key.pem` file from Section 2 and **Save** it.
+
+- Now we need to create the ```main.tf``` file for our network module. Click on New File option and copy the below snippet:
+
+```
+module "network" {
+    source = "./network"
+    compartment_ocid = "${var.compartment_ocid}"
+    tenancy_ocid = "${var.tenancy_ocid}" 
+    AD = "${var.AD}"
+}
+```
+- After copying **Save** the file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Working with Variables
 
 - We can create infrastructure by hard-coding values to the parameters of the resources but this can be avoided and we can parameterize our resources by referencing variables in our configurations. In this section we will learn to work with variables.
