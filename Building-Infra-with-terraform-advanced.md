@@ -73,15 +73,15 @@ In this Lab we will be going through the advanced concepts of terraform by provi
 <img src="https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/qloudable/OCI_Quick_Start/img/RESERVEDIP_HOL006.PNG" alt="image-alt-text">
 
 3. Change directory to `PhotonUser` and create a directory `oci`, Enter command: 
+
 ```
 cd /c/Users/PhotonUser
-```
-```
+
 mkdir ocikeys
-```
-```
+
 cd ocikeys
 ```
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta31.PNG?sp=r&st=2020-03-02T01:40:27Z&se=2020-12-31T09:40:27Z&spr=https&sv=2019-02-02&sr=b&sig=cIyIe9xo4nhSedafmqtJHMcwn4jN32yYhUTOnJU3YOY%3D)
 
 4. Now generate API Keys, Enter commands: 
