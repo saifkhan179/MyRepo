@@ -648,47 +648,15 @@ output "InstancePublicIP" {
 }
 ```
 
-ta34
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta34.PNG?sp=r&st=2020-03-02T04:34:58Z&se=2020-12-31T12:34:58Z&spr=https&sv=2019-02-02&sr=b&sig=34DD%2BsAiSJvRIx%2F3oiFbX%2Fzf2lq055%2FPKJPjkJMKlyo%3D)
 
 - Run ```terraform apply``` command to view the outputs. 
 
-ta35
-
-- This completes provisioning all of the resources for this lab. Now run ```terraform destroy``` to tear down the running infrastructure.
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta35.PNG?sp=r&st=2020-03-02T04:35:40Z&se=2020-12-31T12:35:40Z&spr=https&sv=2019-02-02&sr=b&sig=SvauwW0RgTOh5kQ55s3E6gVbVNGN8yEKRCZREBx82sE%3D)
 
 - Multiple output variables can be defined to retrieve values as per requirement.
 
-## Working with Modules
-
-- Throughout the earlier sections we have been creating configuration files and deploying resources in cloud. But as the infrastructure grows it becomes difficult to manage all these configurations. 
-
-- As a result, growing infrastructure can pose a few problems like lack of organization, a lack of reusability and can also pose difficulty for various teams in an organization.
-
-- Modules in Terraform are self-contained packages of Terraform configurations that are managed as a group. Modules are used to create reusable components, improve organization, and to treat pieces of infrastructure as a black box.
-
-- In this section we will learn to divide our configuration in different modules and use these modules wherever necessary.
-
-- Click on Terminal and choose New Terminal to open terminal in Visual Studio Code. You should be in the `terraformOCI` folder
-
-- Change the directory to PhotonUser and then create a new folder called ```terraformModules``` in the terminal. Execute the following commands: 
-
-```
-cd D:\PhotonUser
-```
-```
-mkdir terraformModules
-```
-```
-cd terraformModules
-```
-
-- Now Click File and then select Open Folder. This will give you a list of folders present in the directory. Select the newly created folder `terraformModules` and click ```Select Folder```.
-
-ta37
-
-
-
-
+- This completes provisioning all of the resources for this lab. Now run ```terraform destroy``` to tear down the running infrastructure.
 
 
 
