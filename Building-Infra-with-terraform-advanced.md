@@ -20,9 +20,6 @@
 
 [Output Variables](#output-variables)
 
-[Working with Modules](#working-with-modules)
-
-
 ## Overview
 
 Terraform is an open-source infrastructure as code software tool created by HashiCorp. It enables users to define and provision a datacenter infrastructure using a high-level configuration language known as Hashicorp Configuration Language (HCL), or optionally JSON.
@@ -85,7 +82,7 @@ mkdir ocikeys
 ```
 cd ocikeys
 ```
-ta31
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta31.PNG?sp=r&st=2020-03-02T01:40:27Z&se=2020-12-31T09:40:27Z&spr=https&sv=2019-02-02&sr=b&sig=cIyIe9xo4nhSedafmqtJHMcwn4jN32yYhUTOnJU3YOY%3D)
 
 4. Now generate API Keys, Enter commands: 
 ```
@@ -109,7 +106,7 @@ cat oci_api_key_public.pem
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta2.PNG?sp=r&st=2020-02-22T00:45:38Z&se=2021-12-31T08:45:38Z&spr=https&sv=2019-02-02&sr=b&sig=2rjwWGSgzwnKrVc5ZWY6lOmvJDjOzIGcoxZBCRvDHro%3D)
 
-ta32 
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta32.PNG?sp=r&st=2020-03-02T01:41:26Z&se=2020-12-31T09:41:26Z&spr=https&sv=2019-02-02&sr=b&sig=YbrQ6h0tEyFa7U0EiJBsluDsLxZSSBgecufUes4WESA%3D)
 
 8. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this:
 
@@ -117,7 +114,7 @@ ta32
 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef
 ```
 
-ta33
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta33.PNG?sp=r&st=2020-03-02T01:42:00Z&se=2020-12-31T09:42:00Z&spr=https&sv=2019-02-02&sr=b&sig=v5Oy1iVw7PHaDsi2uKAC3TRJ6wVloI3wIhEBJqVIFMM%3D)
 
 ## Collecting Tenancy and User Information
 
