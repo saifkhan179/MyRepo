@@ -139,7 +139,7 @@ ta38
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta7.PNG?sp=r&st=2020-02-22T00:48:09Z&se=2021-12-31T08:48:09Z&spr=https&sv=2019-02-02&sr=b&sig=9i7pPE%2FdI6%2BOE061SFcTfJS%2F6ILel%2Fp3B8pCRmOMKRM%3D)
 
-**NOTE: If you see US West (Phoenix) then region = 'us-phoenix-1'** 
+**NOTE**: If you see US West (Phoenix) then region = 'us-phoenix-1'
 
 5. The Compartment OCID is provided below:
 
@@ -187,7 +187,7 @@ ta39
 
 ![](https://qloudableassets.blob.core.windows.net/devops/Azure/Terraform/2.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-5. You will be navigated to `/PhotonUser` directory where terraformModules folder is created. Select `terraformModules` folder and click on `Select Folder`.
+5. In the Address Bar type `C:/Users/PhotonUser`. You will be navigated to `/PhotonUser` directory where terraformModules folder is created. Select `terraformModules` folder and click on `Select Folder`.
 
 ta40 
 
@@ -273,7 +273,7 @@ variable "AD" {
 }
 
 variable "InstanceShape" {
-  default = "VM.Standard1.1"
+  default = "VM.StandardE2.1"
 }
 
 variable "InstanceImageOCID" {
@@ -281,7 +281,6 @@ variable "InstanceImageOCID" {
   default = {    
     us-phoenix-1 = "ocid1.image.oc1.phx.aaaaaaaav4gjc4l232wx5g5drypbuiu375lemgdgnc7zg2wrdfmmtbtyrc5q"
     us-ashburn-1   = "ocid1.image.oc1.iad.aaaaaaaautkmgjebjmwym5i6lvlpqfzlzagvg5szedggdrbp6rcjcso3e4kq"
-    eu-frankfurt-1 = "ocid1.image.oc1.eu-frankfurt1.aaaaaaaajdge4yzm5j7ci7ryzte7f3qgcekljjw7p6nexhnsvwt6hoybcu3q"
   }
 }
 ```
@@ -348,9 +347,11 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/instanc
 unzip compute.zip
 ```
 
-- After uzipping, you should see a `compute` folder in terraformModules.
+- After uzipping, you should see an `instance` folder in terraformModules.
 
-- Now we need to update the main.tf file to provision a compute instance. Add the below code snippet to the file.
+ta50
+
+- Now we need to update the `main.tf` file to provision a compute instance. Add the below code snippet to the file and **Save** it.
 
 ```
 module "instance" {
@@ -367,7 +368,9 @@ module "instance" {
 }
 ```
 
-- Create a file called ```bootstrap.sh```. This file is used by the compute module to install packages while booting the instance. Click on New File option to create the file and then copy the below code snippet. 
+ta51
+
+- Create a file called ```bootstrap.sh```. This file is used by the compute module to install packages after provisioning the instance. Click on New File option to create the file and then copy the below code snippet. **Save** the file once done
 
 ```
 #!/bin/bash
@@ -381,15 +384,20 @@ systemctl enable  firewalld
 systemctl restart  firewalld
 ```
 
+ta52
+
 - Download the private ssh key for the compute instance by executing the below command in terminal. 
 
 ```
 curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp=r&st=2020-02-11T23:40:23Z&se=2022-01-01T07:40:23Z&spr=https&sv=2019-02-02&sr=b&sig=pKQqknoxzn2Xy2Svv%2Bn%2BMJcudaUuSWEso9tm3q81xhY%3D" -o ckey
 ```
 
-- In addition to the files you had in the terraformModules folder, you should also have an updated main.tf file, bootstrap.sh file, ckey and compute folder.
+ta53
+
+- In addition to the files you had in the terraformModules folder, at this stage you should also have an updated main.tf file, bootstrap.sh file, ckey and instance folder.
 
 - Now let us run terraform commands to provision a compute instance in the VCN created earlier. Run ```terraform init``` and ```terraform apply``` commands in the terminal.
+
 
 
 - This will provision a compute instance and also run the bootstrap.sh file to update and install packages.
