@@ -193,6 +193,10 @@ https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta39.P
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta41.PNG?sp=r&st=2020-03-22T03:13:23Z&se=2021-12-31T12:13:23Z&spr=https&sv=2019-02-02&sr=b&sig=idGeYoBcKVt4x0meCihtwz8Pj8f1GtHJe3NOWAtmvLY%3D)
 
+7. Click on Extensions button and search Terraform. Click on install for ``Terraform`` Extension. Click on Explorer button once the installation is complete.
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta57.PNG?sp=r&st=2020-03-22T08:17:43Z&se=2021-12-31T17:17:43Z&spr=https&sv=2019-02-02&sr=b&sig=gEPmaZZjCmEobfwDoyMaM69N14wXnk9%2FAv1lqsK7t7g%3D)
+
 - In the course of this Lab for coming sections we will be understanding the concepts of Terraform with the help of some terraform configuration snippets. 
 
 - These configurations will help us deploy a Virtual Machine, VCN in a compartment and run some shell scripts.
@@ -224,7 +228,7 @@ unzip network.zip
 
 - After uzipping, you should see a `network` folder in `terraformModules`.
 
-- Let us create a New file called ```variables.tf``` in Visual Studio Code under the folder ```terraformModules``` by clicking on the `New File` symbol present beside the folder name. Add this snippet to contents of the `variables.tf` file and **Save** it.
+- Let us create a New file called ```variables.tf``` in Visual Studio Code under the folder ```terraformModules``` by clicking on the `New File` symbol present beside the folder name. Add the snippet below to contents of the `variables.tf` file and **Save** it.
 
 ```
 variable "tenancy_ocid" {
@@ -321,9 +325,9 @@ module "network" {
 
 - While writing the configuration for modules, the source of the modules should be specified first and then the variables used in the modules are defined later. As seen in the above snippet, the source for our module is defined first and then the variables. 
 
-- If you Open the network folder, you should see three configuration files namely `network.tf`, `variables.tf` and `output.tf`. These are configuration files for our network module.
+- If you Open the network folder, you should see three configuration files namely ``network.tf``, ``variables.tf`` and ``output.tf``. These are configuration files for our network module.
 
-- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands. Answer Yes when prompted.
+- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands in the Terminal window. Answer Yes when prompted.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta49.PNG?sp=r&st=2020-03-22T03:17:49Z&se=2021-12-31T12:17:49Z&spr=https&sv=2019-02-02&sr=b&sig=BR%2FkHbXF%2FyKvDhlz%2FYLwUJQxME%2F5jZLLmj2uwp1HUak%3D)
 
@@ -365,7 +369,7 @@ module "instance" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta51.PNG?sp=r&st=2020-03-22T03:18:41Z&se=2021-12-31T12:18:41Z&spr=https&sv=2019-02-02&sr=b&sig=Z2ZqX%2F%2BwRqJBqdA73sdJx7P1h9fr%2B5YEVNZgivT5zMs%3D)
 
-- Create a file called ```bootstrap.sh```. This file is used by the compute module to install packages after provisioning the instance. Click on New File option to create the file and then copy the below code snippet. **Save** the file once done
+- Create a file called ```bootstrap.sh```. This file is used by the compute module to install packages after provisioning the instance. Click on New File option to create the file and then copy the below code snippet. **Save** the file once done.
 
 ```
 #!/bin/bash
@@ -388,18 +392,22 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta53.PNG?sp=r&st=2020-03-22T03:19:25Z&se=2021-12-31T12:19:25Z&spr=https&sv=2019-02-02&sr=b&sig=DFcUb%2B2eOo6jdgQOA4rZOwckZqpCalh9BJOpJvdWYEo%3D)
 
-- In addition to the files you had in the terraformModules folder, at this stage you should also have an updated main.tf file, bootstrap.sh file, ckey and instance folder.
+- In addition to the files you had in the terraformModules folder, at this stage you should also have an updated ``main.tf`` file, ``bootstrap.sh`` file, ``ckey`` and ``instance`` folder.
 
-- Now let us run terraform commands to provision a compute instance in the VCN created earlier. Run ```terraform init``` and ```terraform apply``` commands in the terminal.
+- Now let us run terraform commands to provision a compute instance in the VCN created earlier. Run ```terraform init``` and ```terraform apply``` commands in the terminal window.
 
+- This will provision a compute instance and copy the bootstrap.sh file to the created instance and install packages on the machine.
 
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta58.PNG?sp=r&st=2020-03-22T08:00:55Z&se=2021-12-31T17:00:55Z&spr=https&sv=2019-02-02&sr=b&sig=XV9xiHuBJBRXmFS%2FjtszD6EPfYWZF8%2Bin%2Ft9N8XT1N0%3D)
 
-- This will provision a compute instance and also run the bootstrap.sh file to update and install packages.
+- If you click on the instance folder, you should see a provisioner.tf file. This file has two provisioners namely ``file`` and ``remote-exec``.
+
+- The `file` provisoiner is used to copy files from local to a provisioned machine, in this case we transferred the bootstrap.sh file onto the instance. The remote-exec provisioner connects to the machine and run some commands onto the machine, in our case we are trying to uodate packages and then install the apache server onto the machine.
 
 
 3. Creating outputs with modules
 
-- Create a new file called ```outputs.tf``` by clicking the `New file` option. Copy the below Code and **Save** the file. 
+- Create a new file called ```outputs.tf``` outside the instance folder by clicking outside the folder first and then clicking `New file` option. Copy the below Code and **Save** the file. 
 
 ```
 output "InstancePrivateIP" {
@@ -411,40 +419,40 @@ output "InstancePublicIP" {
 }
 ```
 
-ta54 - modified
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta59.PNG?sp=r&st=2020-03-22T08:01:22Z&se=2021-12-31T17:01:22Z&spr=https&sv=2019-02-02&sr=b&sig=cuhshRNCmX1b1A7Kc%2FrY%2B5B359S2yhfHOQqgzf6tRjw%3D)
 
-- Now run the ```terraform apply``` command to get the outputs. Running the command will spew out the Public and Private IPs of the compute instance. 
+- Now run the ```terraform apply``` command in the terminal window to get the outputs. Running the command will spew out the Public and Private IPs of the compute instance. 
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta55.PNG?sp=r&st=2020-03-22T03:20:53Z&se=2021-12-31T12:20:53Z&spr=https&sv=2019-02-02&sr=b&sig=z5ltARUKpGSj2yqwNUTNPMTF7mkOaJxWAik7n7ZSod4%3D)
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta60.PNG?sp=r&st=2020-03-22T08:01:47Z&se=2021-12-31T17:01:47Z&spr=https&sv=2019-02-02&sr=b&sig=tCjsgQiUW3HUwxpfivJIXH8b426NH4pW6uUG7d32Sbk%3D)
+
+- Copy the Public IP of the instance. Switch to Chrome browser and paste the IP address in a new tab. You should see the Apache httpd Web Server. 
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta61.PNG?sp=r&st=2020-03-22T08:02:27Z&se=2021-12-31T17:02:27Z&spr=https&sv=2019-02-02&sr=b&sig=EPmlDXBVzbFcpnqxqLRwotyB%2BLulxEAgRP0Mq1d4NHE%3D)
 
 ## Changing Configuration in Modules
 
 - In this section we will see what happens when we modify the infrastructure and change our configuration files. 
 
-- You should be in the terraformModules folder in Visual Studio Code. Let us try to ssh into the provisioned instance. We can do this by executing the below command: 
+- Switch to Visual Studio Code, you should be in the terraformModules folder. Let us try to modify the configuration and provision the instance again.
 
-```
-ssh -i ckey opc@<public_ip_of_the instance>
-```
+- Click on variables.tf file and scroll down to find the ``InstanceShape`` variable. Change the value from `VM.Standar.E2.1` to `VM.Standard.E2.2`
 
-- You should not be able to ssh right now because the port 22 is not open in the security list. Let us modify our network module.
-
-- Click on network folder in Visual Studio Code. now click on network.tf file. In the editor, scroll down and you should see ```oci_core_security_list``` resource. 
-
-- There should be an ingress_security_list block that is commented. Select the commented part and do a Right Click on the selected part and click on `Command Palette`. 
-
-- Now Select `Remove Line Comment`. The commented lines should be uncommented. Now **Save** the File.
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta62.PNG?sp=r&st=2020-03-22T08:03:02Z&se=2021-12-31T17:03:02Z&spr=https&sv=2019-02-02&sr=b&sig=PBIUbifaEQMhBZaewfClzUfEv2ZQeKfotfNO5C1ge3c%3D)
 
 - Now run the ```terraform apply``` command. Terraform does an in-place modification of the resource and adds a new port to the securilty list.
 
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta63.PNG?sp=r&st=2020-03-22T08:03:24Z&se=2021-12-31T17:03:24Z&spr=https&sv=2019-02-02&sr=b&sig=EBoT0%2B%2FPyp91UjNDrj3LWoby%2B9NYcWtWaEeXspQjVCs%3D)
 
+- Terraform does an in-place modification of the resource and provisiones a new instance with the updated shape of the instance.
 
-- Now try to ssh into the compute instance again. This time you should be able to ssh. Answer Yes when prompted.
+- Hence you can use Modules in your configurations and not worry about the specifics. The configurations can be modified as per your use and can be updated accordingly.
 
 ## Deleting the resources
 
 - In this section we will delete the resources that we have provisioned in the earlier sections. 
 
-- Run ```terraform destroy``` command in the terminal window. Answer `Yes` when prompted. The destroy command starts executing and the resources will be deleted.
+- Run ```terraform destroy``` command in the terminal window to delete the resources provisioned in the earlier sections. Answer `Yes` when prompted. The destroy command starts executing and the resources will be deleted.
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta64.PNG?sp=r&st=2020-03-22T08:14:15Z&se=2021-12-31T17:14:15Z&spr=https&sv=2019-02-02&sr=b&sig=q%2B%2BPEwyhOhY3R1P%2BFXy6ps452TRLofNJAMsEJi0G50k%3D)
  
 
