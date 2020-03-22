@@ -177,7 +177,7 @@ mkdir terraformModules
 cd terraformModules
 ```
 
-https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta39.PNG?sp=r&st=2020-03-22T03:10:56Z&se=2021-12-31T12:10:56Z&spr=https&sv=2019-02-02&sr=b&sig=CirpLKV1QZpocBoemt%2FavX6TtvqrB36OCU08s4hcdHw%3D
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta39.PNG?sp=r&st=2020-03-22T03:10:56Z&se=2021-12-31T12:10:56Z&spr=https&sv=2019-02-02&sr=b&sig=CirpLKV1QZpocBoemt%2FavX6TtvqrB36OCU08s4hcdHw%3D)
 
 4. On top left corner, click on `File` and choose `Open Folder`
 
@@ -439,11 +439,15 @@ output "InstancePublicIP" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta62.PNG?sp=r&st=2020-03-22T08:03:02Z&se=2021-12-31T17:03:02Z&spr=https&sv=2019-02-02&sr=b&sig=PBIUbifaEQMhBZaewfClzUfEv2ZQeKfotfNO5C1ge3c%3D)
 
-- Now run the ```terraform apply``` command. Terraform does an in-place modification of the resource and adds a new port to the securilty list.
+- Now run the ```terraform apply``` command in the Terminal window. Answer `Yes` when prompted.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta63.PNG?sp=r&st=2020-03-22T08:03:24Z&se=2021-12-31T17:03:24Z&spr=https&sv=2019-02-02&sr=b&sig=EBoT0%2B%2FPyp91UjNDrj3LWoby%2B9NYcWtWaEeXspQjVCs%3D)
 
-- Terraform does an in-place modification of the resource and provisiones a new instance with the updated shape of the instance.
+- Terraform does an in-place modification of the resource and provisiones a new instance with the updated shape of the instance. 
+
+- Switch to OCI Console and Click on Compute > Instances in Menu. Select your compartment under compartment section. Now Click on the TFInstance resource, you should see the updated shape with existing network addresses.  
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta65.PNG?sp=r&st=2020-03-22T08:28:41Z&se=2021-12-31T17:28:41Z&spr=https&sv=2019-02-02&sr=b&sig=BjEYtADbrS%2BwFETn62ZW5YGmkx3939BMX6ViNVlJKqo%3D)
 
 - Hence you can use Modules in your configurations and not worry about the specifics. The configurations can be modified as per your use and can be updated accordingly.
 
