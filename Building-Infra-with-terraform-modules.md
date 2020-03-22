@@ -131,9 +131,7 @@ cat oci_api_key_public.pem
 
 3. Switch to OCI Console. You should be on the user details page. Scroll Down to see the fingerprint value. Copy and Paste it in Notepad.
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta6.PNG?sp=r&st=2020-02-22T00:47:34Z&se=2021-12-31T08:47:34Z&spr=https&sv=2019-02-02&sr=b&sig=4J8hR4g0D9ZxViTjEa0VrYcU6q7zncCsiNns6C11jY8%3D)
-
-ta38
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta38.PNG?sp=r&st=2020-03-22T03:08:52Z&se=2021-12-31T12:08:52Z&spr=https&sv=2019-02-02&sr=b&sig=q48%2FsYC6fJRmMf9Wr%2FKJHUO2udOplWTBb7UXFdKOAhU%3D)
 
 4. Now check the region you are logged into in your OCI Console. If you see US East (Ashburn) on the top then switch to Notepad and write down ```region = us-ashburn-1```.
 
@@ -179,9 +177,7 @@ mkdir terraformModules
 cd terraformModules
 ```
 
-ta39
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/oci11.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)  
+https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta39.PNG?sp=r&st=2020-03-22T03:10:56Z&se=2021-12-31T12:10:56Z&spr=https&sv=2019-02-02&sr=b&sig=CirpLKV1QZpocBoemt%2FavX6TtvqrB36OCU08s4hcdHw%3D
 
 4. On top left corner, click on `File` and choose `Open Folder`
 
@@ -189,15 +185,13 @@ ta39
 
 5. In the Address Bar type `C:/Users/PhotonUser`. You will be navigated to `/PhotonUser` directory where terraformModules folder is created. Select `terraformModules` folder and click on `Select Folder`.
 
-ta40 
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta56.PNG?sp=r&st=2020-03-22T03:12:42Z&se=2021-12-31T12:12:42Z&spr=https&sv=2019-02-02&sr=b&sig=gkF%2FIxQQgwTxJXIs3I5Z4dyA7OSsM8cAQPb2A1YDfGc%3D)
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/oci13.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)  
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta40.PNG?sp=r&st=2020-03-22T03:11:57Z&se=2021-12-31T12:11:57Z&spr=https&sv=2019-02-02&sr=b&sig=hr3hPwR02GH7T1sOyXvT05H9zfJBPuWYdli02XhqRSI%3D)
 
 6. Now `terraformModules` folder is opened in Visual Studio Code.
 
-ta41
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta10.PNG?sp=r&st=2020-02-22T00:51:43Z&se=2021-12-31T08:51:43Z&spr=https&sv=2019-02-02&sr=b&sig=VUBLfi2SDA3%2Be6twi9%2BKeBLB8%2B%2Bs8WOKyjasj18rXhc%3D)
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta41.PNG?sp=r&st=2020-03-22T03:13:23Z&se=2021-12-31T12:13:23Z&spr=https&sv=2019-02-02&sr=b&sig=idGeYoBcKVt4x0meCihtwz8Pj8f1GtHJe3NOWAtmvLY%3D)
 
 - In the course of this Lab for coming sections we will be understanding the concepts of Terraform with the help of some terraform configuration snippets. 
 
@@ -226,8 +220,7 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/network
 unzip network.zip
 ```
 
-ta42
-
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta42.PNG?sp=r&st=2020-03-22T03:14:25Z&se=2021-12-31T12:14:25Z&spr=https&sv=2019-02-02&sr=b&sig=BV9UitAmcA%2BE4g8hprxE6xp0%2BwEZ2q4Sj8EsSrgrwCo%3D)
 
 - After uzipping, you should see a `network` folder in `terraformModules`.
 
@@ -273,23 +266,25 @@ variable "AD" {
 }
 
 variable "InstanceShape" {
-  default = "VM.StandardE2.1"
+  default = "VM.Standard.E2.1"
 }
 
 variable "InstanceImageOCID" {
   type = "map"
   default = {    
-    us-phoenix-1 = "ocid1.image.oc1.phx.aaaaaaaav4gjc4l232wx5g5drypbuiu375lemgdgnc7zg2wrdfmmtbtyrc5q"
-    us-ashburn-1   = "ocid1.image.oc1.iad.aaaaaaaautkmgjebjmwym5i6lvlpqfzlzagvg5szedggdrbp6rcjcso3e4kq"
+    us-phoenix-1 = "ocid1.image.oc1.phx.aaaaaaaacy7j7ce45uckgt7nbahtsatih4brlsa2epp5nzgheccamdsea2yq"
+    us-ashburn-1   = "ocid1.image.oc1.iad.aaaaaaaavzjw65d6pngbghgrujb76r7zgh2s64bdl4afombrdocn4wdfrwdq"
   }
 }
 ```
 
-ta44
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta43.PNG?sp=r&st=2020-03-22T03:15:09Z&se=2021-12-31T12:15:09Z&spr=https&sv=2019-02-02&sr=b&sig=ovgsu2Tsi%2FGOPnoqqwBRuYO7F4hBdcXa9FMYkVD99xQ%3D)
 
-- The values for `tenancy_ocid`, `user_ocid`, `fingerprint`, `region` and `compartment_ocid` can be found in Section 2 of this lab. Once done **Save** the file.
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta44.PNG?sp=r&st=2020-03-22T03:15:34Z&se=2021-12-31T12:15:34Z&spr=https&sv=2019-02-02&sr=b&sig=FdHPp5ZtpFydpEtHTsMgPV%2Bsc15m7rfrpsqQXMwTESI%3D)
 
-ta48
+- The values for `tenancy_ocid`, `user_ocid`, `fingerprint`, `region` and `compartment_ocid` can be found in Section 2 of this lab. Copy the values and then **Save** the file.
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta48.PNG?sp=r&st=2020-03-22T03:15:59Z&se=2021-12-31T12:15:59Z&spr=https&sv=2019-02-02&sr=b&sig=zSWZHBzC8hkvQTqUO9Ur4qgeGGgHf86qGWcfcIwv3DQ%3D)
 
 - Now create ```provider.tf``` file and copy the below snippet and **Save** the file.
 
@@ -304,11 +299,11 @@ provider "oci" {
 }
 ```
 
-ta45
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta45.PNG?sp=r&st=2020-03-22T03:16:28Z&se=2021-12-31T12:16:28Z&spr=https&sv=2019-02-02&sr=b&sig=%2BdeceljNm0Z1%2BYa4MVhd4WdtsTu9SPzobC1ig%2BBb5Ds%3D)
 
 - Create another file called ```private-key```. Copy the value of `oci_api_key.pem` file from Section 2 and **Save** it.
 
-ta47
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta47.PNG?sp=r&st=2020-03-22T03:16:53Z&se=2021-12-31T12:16:53Z&spr=https&sv=2019-02-02&sr=b&sig=8R817pxvGiTRlcyI%2B8zSTy9PkdEKJDqqwyLHiCHbDSs%3D)
 
 - Now we need to create the ```main.tf``` file for our network module. Click on New File option and copy the below snippet:
 
@@ -322,7 +317,7 @@ module "network" {
 ```
 - After copying **Save** the file.
 
-ta46
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta46.PNG?sp=r&st=2020-03-22T03:17:24Z&se=2021-12-31T12:17:24Z&spr=https&sv=2019-02-02&sr=b&sig=iBh7R%2BDhmOaCquvPUctGgUyHI9MxXB4FtREldFGrMNU%3D)
 
 - While writing the configuration for modules, the source of the modules should be specified first and then the variables used in the modules are defined later. As seen in the above snippet, the source for our module is defined first and then the variables. 
 
@@ -330,7 +325,7 @@ ta46
 
 - Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands. Answer Yes when prompted.
 
-ta49
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta49.PNG?sp=r&st=2020-03-22T03:17:49Z&se=2021-12-31T12:17:49Z&spr=https&sv=2019-02-02&sr=b&sig=BR%2FkHbXF%2FyKvDhlz%2FYLwUJQxME%2F5jZLLmj2uwp1HUak%3D)
 
 - This will provision a VCN in your Tenancy. Now let us create another module to provision a compute instance.
 
@@ -349,7 +344,7 @@ unzip compute.zip
 
 - After uzipping, you should see an `instance` folder in terraformModules.
 
-ta50
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta50.PNG?sp=r&st=2020-03-22T03:18:15Z&se=2021-12-31T12:18:15Z&spr=https&sv=2019-02-02&sr=b&sig=Fnn04ZqqwYLfDw1pz47ccRxPTioejmj2RzgMl6C1Sn0%3D)
 
 - Now we need to update the `main.tf` file to provision a compute instance. Add the below code snippet to the file and **Save** it.
 
@@ -368,13 +363,12 @@ module "instance" {
 }
 ```
 
-ta51
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta51.PNG?sp=r&st=2020-03-22T03:18:41Z&se=2021-12-31T12:18:41Z&spr=https&sv=2019-02-02&sr=b&sig=Z2ZqX%2F%2BwRqJBqdA73sdJx7P1h9fr%2B5YEVNZgivT5zMs%3D)
 
 - Create a file called ```bootstrap.sh```. This file is used by the compute module to install packages after provisioning the instance. Click on New File option to create the file and then copy the below code snippet. **Save** the file once done
 
 ```
 #!/bin/bash
-
 yum update -y
 yum install -y httpd
 systemctl enable  httpd.service
@@ -384,7 +378,7 @@ systemctl enable  firewalld
 systemctl restart  firewalld
 ```
 
-ta52
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta52.PNG?sp=r&st=2020-03-22T03:19:04Z&se=2021-12-31T12:19:04Z&spr=https&sv=2019-02-02&sr=b&sig=So0kWlEXn1SZbBDr2IsWF70FHNzUNRV25gQyDb4GAYg%3D)
 
 - Download the private ssh key for the compute instance by executing the below command in terminal. 
 
@@ -392,7 +386,7 @@ ta52
 curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp=r&st=2020-02-11T23:40:23Z&se=2022-01-01T07:40:23Z&spr=https&sv=2019-02-02&sr=b&sig=pKQqknoxzn2Xy2Svv%2Bn%2BMJcudaUuSWEso9tm3q81xhY%3D" -o ckey
 ```
 
-ta53
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta53.PNG?sp=r&st=2020-03-22T03:19:25Z&se=2021-12-31T12:19:25Z&spr=https&sv=2019-02-02&sr=b&sig=DFcUb%2B2eOo6jdgQOA4rZOwckZqpCalh9BJOpJvdWYEo%3D)
 
 - In addition to the files you had in the terraformModules folder, at this stage you should also have an updated main.tf file, bootstrap.sh file, ckey and instance folder.
 
@@ -417,8 +411,11 @@ output "InstancePublicIP" {
 }
 ```
 
+ta54 - modified
+
 - Now run the ```terraform apply``` command to get the outputs. Running the command will spew out the Public and Private IPs of the compute instance. 
 
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta55.PNG?sp=r&st=2020-03-22T03:20:53Z&se=2021-12-31T12:20:53Z&spr=https&sv=2019-02-02&sr=b&sig=z5ltARUKpGSj2yqwNUTNPMTF7mkOaJxWAik7n7ZSod4%3D)
 
 ## Changing Configuration in Modules
 
@@ -439,6 +436,8 @@ ssh -i ckey opc@<public_ip_of_the instance>
 - Now Select `Remove Line Comment`. The commented lines should be uncommented. Now **Save** the File.
 
 - Now run the ```terraform apply``` command. Terraform does an in-place modification of the resource and adds a new port to the securilty list.
+
+
 
 - Now try to ssh into the compute instance again. This time you should be able to ssh. Answer Yes when prompted.
 
