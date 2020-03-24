@@ -71,6 +71,7 @@ In this Lab we will be going through the advanced concepts of terraform by provi
 <img src="https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/qloudable/OCI_Quick_Start/img/RESERVEDIP_HOL006.PNG" alt="image-alt-text">
 
 3. Change directory to `PhotonUser` and create a directory `oci`, Enter command: 
+
 ```
 cd /c/Users/PhotonUser
 ```
