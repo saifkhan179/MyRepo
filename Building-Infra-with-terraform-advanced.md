@@ -85,6 +85,7 @@ cd ocikeys
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta31.PNG?sp=r&st=2020-03-02T01:40:27Z&se=2020-12-31T09:40:27Z&spr=https&sv=2019-02-02&sr=b&sig=cIyIe9xo4nhSedafmqtJHMcwn4jN32yYhUTOnJU3YOY%3D)
 
 4. Now generate API Keys, Enter commands: 
+
 ```
 openssl genrsa -out oci_api_key.pem 2048 
 ```
@@ -110,53 +111,37 @@ cat oci_api_key_public.pem
 
 8. Once you upload the public key, the fingerprint is automatically displayed there. It looks something like this:
 
-```
+`
 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef
-```
+`
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta33.PNG?sp=r&st=2020-03-02T01:42:00Z&se=2020-12-31T09:42:00Z&spr=https&sv=2019-02-02&sr=b&sig=v5Oy1iVw7PHaDsi2uKAC3TRJ6wVloI3wIhEBJqVIFMM%3D)
 
 ## Collecting Tenancy and User Information
 
-1. In the OCI Console, Click Human icon (top right) and click Tenancy. You should see Tenancy Information Page. Click ```Copy``` to copy the Tenancy OCID. 
+- - In this section we will collect some Tenancy information that will be used in our terraform configurations for our later sections.
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-4.PNG?sp=r&st=2020-02-11T08:56:25Z&se=2021-12-31T16:56:25Z&spr=https&sv=2019-02-02&sr=b&sig=wf3ZdY%2F5vNhkvacfSQadJkEwpFk%2FmAqdTs5OdzkfCYQ%3D)
+1. The Tenancy OCID is provided below:
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-6.PNG?sp=r&st=2020-02-11T08:57:59Z&se=2021-12-31T16:57:59Z&spr=https&sv=2019-02-02&sr=b&sig=CdR%2BhR0KHP3iSQWnuOCQLXpdbJeNClv57rPk7QWi4vY%3D)
+* **Tenant OCID:** {{Tenancy OCID}}
 
-2. Click the Apps Icon and open Notepad to paste the Tenancy OCID.
+2. The User OCID is provided below: 
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-5.png?sp=r&st=2020-02-11T08:57:13Z&se=2021-12-31T16:57:13Z&spr=https&sv=2019-02-02&sr=b&sig=NyDR%2B1plSu9V8B7coL08ya%2FpC54lhkOfdZCJRTpiOpQ%3D)
+* **User OCID:** {{User OCID}}
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta4.PNG?sp=r&st=2020-02-22T00:46:22Z&se=2021-12-31T08:46:22Z&spr=https&sv=2019-02-02&sr=b&sig=NP%2Fll3dl1ZW7irjsquOETqmWTB2oxsTjSUYc76pUP8I%3D)
-
-3. Now Switch to OCI Console and Click Human icon (top right) again and click your username. Under User Information page Click ```Copy``` to copy the User OCID. Switch to Notepad and paste the OCID.
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-7.PNG?sp=r&st=2020-02-11T08:59:47Z&se=2021-12-31T16:59:47Z&spr=https&sv=2019-02-02&sr=b&sig=k9uFhcANQeetVXpf7FJVo30OcAg812PzdH9w8hRAxh0%3D)
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-8.PNG?sp=r&st=2020-02-11T09:00:27Z&se=2021-12-31T17:00:27Z&spr=https&sv=2019-02-02&sr=b&sig=bcO192%2FMB8wQCshx1nPS4hlSmxFd2Jgkm0ZXG8q%2BYFM%3D)
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta5.PNG?sp=r&st=2020-02-22T00:46:59Z&se=2021-12-31T08:46:59Z&spr=https&sv=2019-02-02&sr=b&sig=LFyGwJLM9MOrrncxYFdA%2BQI5gMLpIHJ%2FD8yD9hVlrh4%3D)
-
-4. Switch to OCI Console. You should be on the user details page. Scroll Down to see the fingerprint value. Copy and Paste it in Notepad.
+3. Switch to OCI Console. You should be on the user details page. Scroll Down to see the fingerprint value. Copy and Paste it in Notepad.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta6.PNG?sp=r&st=2020-02-22T00:47:34Z&se=2021-12-31T08:47:34Z&spr=https&sv=2019-02-02&sr=b&sig=4J8hR4g0D9ZxViTjEa0VrYcU6q7zncCsiNns6C11jY8%3D)
 
-5. Now check the region you are logged into in your OCI Console. If you see US East (Ashburn) on the top then switch to Notepad and write down ```region = us-ashburn-1```.
+4. Now check the region you are logged into in your OCI Console. If you see US East (Ashburn) on the top then switch to Notepad and write down ```region = us-ashburn-1```.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta7.PNG?sp=r&st=2020-02-22T00:48:09Z&se=2021-12-31T08:48:09Z&spr=https&sv=2019-02-02&sr=b&sig=9i7pPE%2FdI6%2BOE061SFcTfJS%2F6ILel%2Fp3B8pCRmOMKRM%3D)
 
-6. Switch to OCI Console. Click on the Menu button and Scroll Down to see ```Identity``` under `Governance and Administration`. Now click on Identity and then Compartments. You should see a list of Compartments.
+5. The Compartment OCID is provided below:
 
-- Hover over your compartment OCID and click copy. Switch to Notepad and paste it.
+* **Compartment OCID:** {{Compartment OCID}}
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta15.PNG?sp=r&st=2020-02-22T00:48:47Z&se=2021-12-31T08:48:47Z&spr=https&sv=2019-02-02&sr=b&sig=74R9fAvw%2Bow8EqZnHR32KFwXMdwm3B%2BTHSS88zoyC70%3D)
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta16.PNG?sp=r&st=2020-02-22T00:49:21Z&se=2021-12-31T08:49:21Z&spr=https&sv=2019-02-02&sr=b&sig=EEVfFvp4VhFMqDNXXMt%2B16LOcvA7cA%2BDWIg632tPlqY%3D)
-
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta17.PNG?sp=r&st=2020-02-22T00:50:01Z&se=2021-12-31T08:50:01Z&spr=https&sv=2019-02-02&sr=b&sig=VYz6CSLbteZ3vFEA3v2Ry7yFAPYpIHcq75SU5mFxIr0%3D)
-
-7. Switch to Git-Bash. You should be in the ```oci``` folder. Enter the below command to get the value of the private api key. Copy the value and Paste it in Notepad.
+7. Switch to Git-Bash. You should be in the ```ocikeys``` folder. Enter the below command to get the value of the private api key. Copy the value and Paste it in Notepad.
 
 ```
 cat oci_api_key.pem
@@ -195,13 +180,17 @@ cd terraformOCI
 
 ![](https://qloudableassets.blob.core.windows.net/devops/Azure/Terraform/2.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-5. You will be navigated to `/PhotonUser` directory where terraformOCI folder is created. Select `terraformOCI` and click on `Select Folder`.
+5. In the Address Bar type `C:/Users/PhotonUser`. You will be navigated to `/PhotonUser` directory where terraformOCI folder is created. Select `terraformOCI` and click on `Select Folder`.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/oci13.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)  
 
 6. Now `terraformOCI` folder is opened in Visual Studio Code.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta10.PNG?sp=r&st=2020-02-22T00:51:43Z&se=2021-12-31T08:51:43Z&spr=https&sv=2019-02-02&sr=b&sig=VUBLfi2SDA3%2Be6twi9%2BKeBLB8%2B%2Bs8WOKyjasj18rXhc%3D)
+
+7. Click on Extensions button and search Terraform. Click on install for ``Terraform`` Extension. Click on Explorer button once the installation is complete.
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta57.PNG?sp=r&st=2020-03-22T08:17:43Z&se=2021-12-31T17:17:43Z&spr=https&sv=2019-02-02&sr=b&sig=gEPmaZZjCmEobfwDoyMaM69N14wXnk9%2FAv1lqsK7t7g%3D)
 
 - In the course of this Lab for coming sections we will be understanding the concepts of Terraform with the help of some terraform configuration snippets. 
 
@@ -281,7 +270,7 @@ variable "InstanceImageOCID" {
 
 2. Using Variables in configurations
 
-- Create a new fle caleed `provider.tf` and copy the below code into file and **Save** it. The variables defined earlier in the variables.tf file are now being refrenced in the provider.tf file. 
+- Create a new fle called `provider.tf` and copy the below code into file and **Save** it. The variables defined earlier in the variables.tf file are now being refrenced in the provider.tf file. 
 
 ```
 provider "oci" {
@@ -385,6 +374,8 @@ image = "${var.InstanceImageOCID[var.region]}"
 
 - In the below example, we are trying to create a Virtual Cloud Network (VCN) and its associated resources like Subnet, Route Table and an Internet gateway. 
 
+- Switch to Visual Studio Code, you should be in the `terraformOCI` folder. Create a file named `network.tf`, copy the above snippet and **Save** it.
+
 ```
 resource "oci_core_virtual_network" "ExampleVCN" {
   cidr_block = "10.1.0.0/16"
@@ -425,8 +416,6 @@ data "oci_identity_availability_domains" "ADs" {
   compartment_id = "${var.tenancy_ocid}"
 }
 ```
-
-- Switch to Visual Studio Code, you should be in the `terraformOCI` folder. Create a file named `network.tf`, copy the above snippet and **Save** it.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta20.PNG?sp=r&st=2020-02-22T00:56:57Z&se=2021-12-31T08:56:57Z&spr=https&sv=2019-02-02&sr=b&sig=BU8Ce5NstqthrBPSjtPU8Ma1wx63w8y4sCXsF%2Bl40CY%3D)
 
@@ -534,10 +523,10 @@ resource "oci_core_instance" "TFInstance" {
     create = "15m"
   }
 }
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta25.PNG?sp=r&st=2020-02-22T00:59:36Z&se=2021-12-31T08:59:36Z&spr=https&sv=2019-02-02&sr=b&sig=1Tazt%2B%2Bat2QcjUK41NFljP5LUhokIKRpyKcqFhzHYB8%3D)
 
-```
 - After creating compute.tf file run the below command in Terminal window to download the ssh private key for the instance in `terraformOCI` folder. 
 
 ```
@@ -560,7 +549,7 @@ resource "null_resource" "provisioner" {
             private_key = "${file(var.ssh_private_key)}"
         }
         source = "./bootstrap.sh"
-        destination = "~/bootstrap.sh"
+        destination = "/home/bootstrap.sh"
     }    
     
     provisioner "remote-exec" {
@@ -572,8 +561,9 @@ resource "null_resource" "provisioner" {
             private_key = "${file(var.ssh_private_key)}"
         }
         inline = [
-            "chmod +x ~/bootstrap.sh",            
-            "sudo ~/bootstrap.sh",
+            "chmod +x /home/bootstrap.sh",
+            "cd /home/",
+            "sh bootstrap.sh >> remote-exec.log",
         ]
     }
 }
@@ -586,20 +576,23 @@ resource "null_resource" "provisioner" {
 - Copy the below code in the `bootstrap.sh` file and then **Save** it.
 
 ```
-yum update -y
-yum install -y httpd
-systemctl enable  httpd.service
-systemctl start  httpd.service
-firewall-offline-cmd --add-service=http
-systemctl enable  firewalld
-systemctl restart  firewalld
+#!/bin/bash
+echo "-----------------update the packages------------------"
+sudo yum update -y
+echo "-----------------install apache-----------------------"
+sudo yum install -y httpd
+sudo systemctl enable  httpd.service
+sudo systemctl start  httpd.service
+sudo firewall-offline-cmd --add-service=http
+sudo systemctl enable  firewalld
+sudo systemctl restart  firewalld
 ```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta29.PNG?sp=r&st=2020-02-22T01:02:25Z&se=2021-12-31T09:02:25Z&spr=https&sv=2019-02-02&sr=b&sig=L6hmmJzDwCHegBQr79ji2Lcdba2Ttm65jQ7ArGfxU0o%3D)
 
 - If you check your terraformOCI folder, you should see three additional files created namely, compute.tf, provisioner.tf and bootstrap.sh. 
 
-- Now run the ```terraform init``` and ```terraform apply``` commands to create resources. Answer ```yes``` when prompted, terraform starts creating the resources.
+- Now run the ```terraform init``` and ```terraform apply``` commands in terminal to create resources. Answer ```yes``` when prompted, terraform starts creating the resources.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta30.PNG?sp=r&st=2020-02-26T04:57:18Z&se=2020-12-31T12:57:18Z&spr=https&sv=2019-02-02&sr=b&sig=GdXdv9Yd8Puj%2BB10Aaee2JQBvX0QRlApD6ca2OR792Q%3D)
 
@@ -627,7 +620,7 @@ systemctl restart  firewalld
 
 ```
 output "InstancePublicIP" {
-  value = ["${data.oci_core_vnic.InstanceVnic.public_ip_address}"]
+  value = ["${oci_core_instance.TFInstance.public_ip}"]
 }
 ```
 
@@ -637,17 +630,17 @@ output "InstancePublicIP" {
 
 ```
 output "InstancePrivateIP" {
-  value = ["${oci_core_instance.TFInstance.public_ip}"]
+  value = ["${oci_core_instance.TFInstance.private_ip}"]
 }
 
 output "InstancePublicIP" {
-  value = ["${oci_core_instance.TFInstance.private_ip}"]
+  value = ["${oci_core_instance.TFInstance.public_ip}"]
 }
 ```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta34.PNG?sp=r&st=2020-03-02T04:34:58Z&se=2020-12-31T12:34:58Z&spr=https&sv=2019-02-02&sr=b&sig=34DD%2BsAiSJvRIx%2F3oiFbX%2Fzf2lq055%2FPKJPjkJMKlyo%3D)
 
-- Run ```terraform apply``` command to view the outputs. 
+- Run ```terraform apply``` command in the terminal window to view the outputs. 
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta35.PNG?sp=r&st=2020-03-02T04:35:40Z&se=2020-12-31T12:35:40Z&spr=https&sv=2019-02-02&sr=b&sig=SvauwW0RgTOh5kQ55s3E6gVbVNGN8yEKRCZREBx82sE%3D)
 
