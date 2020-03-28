@@ -72,13 +72,15 @@ In this Lab we will be going through the advanced concepts of terraform by provi
 
 <img src="https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/qloudable/OCI_Quick_Start/img/RESERVEDIP_HOL006.PNG" alt="image-alt-text">
 
-3. Change directory to `PhotonUser` and create a directory `oci`, Enter command: 
+3. Change directory to `PhotonUser` and create a directory `ocikeys`, Enter command: 
 
 ```
 cd /c/Users/PhotonUser
-
+```
+```
 mkdir ocikeys
-
+```
+```
 cd ocikeys
 ```
 
@@ -166,11 +168,12 @@ cat oci_api_key.pem
 ![](https://qloudableassets.blob.core.windows.net/devops/Azure/Terraform/Azure7.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 
-3. Create a directory named ```terraformOCI``` by excuting the below command in Visual Studio Code
+3. Create a directory named ```terraformOCI``` by excuting the below command in Visual Studio Code.
 
 ```
 mkdir terraformOCI
-
+```
+```
 cd terraformOCI
 ```
 
@@ -180,7 +183,7 @@ cd terraformOCI
 
 ![](https://qloudableassets.blob.core.windows.net/devops/Azure/Terraform/2.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-5. In the Address Bar type `C:/Users/PhotonUser`. You will be navigated to `/PhotonUser` directory where terraformOCI folder is created. Select `terraformOCI` and click on `Select Folder`.
+5. In the Address Bar type `D:/PhotonUser`. You will be navigated to `/PhotonUser` directory where terraformOCI folder is created. Select `terraformOCI` and click on `Select Folder`.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/oci13.png?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)  
 
@@ -202,7 +205,7 @@ cd terraformOCI
 
 1. Defining Variables
 
-- Let us create a New file called ```variables.tf``` in Visual Studio Code under the folder ```terraformOCI``` by clicking on the `New File` symbol present beside the folder name and try to reference the `region` as a variable. Add this snippet to contents of the variables.tf file.
+- Let us create a New file called ```variables.tf```. In Visual Studio Code under the folder ```terraformOCI``` click on the `New File` symbol present beside the folder name and try to reference the `region` as a variable. Add this snippet to contents of the variables.tf file.
 
 ```
 variable "region" {
@@ -254,11 +257,11 @@ variable "AD" {
 }
 
 variable "InstanceShape" {
-  default = "VM.Standard1.1"
+  default = "VM.Standard.E2.1"
 }
 
 variable "InstanceImageOCID" {  
-  default = "ocid1.image.oc1.iad.aaaaaaaamspvs3amw74gzpux4tmn6gx4okfbe3lbf5ukeheed6va67usq7qq"
+  default = "ocid1.image.oc1.iad.aaaaaaaa6tp7lhyrcokdtf7vrbmxyp2pctgg4uxvt4jz4vc47qoc2ec4anha"
 }
 ```
 
@@ -295,26 +298,26 @@ i. Command-line flags
 
 - You can set variables directly on the command-line with the ```-var``` flag. Any command in Terraform that inspects the configuration accepts this flag, such as apply, plan, and refresh:
 
-```
+`
 terraform apply -var 'region=us-ashburn-1'
-```
+`
 
 ii. From a file
 
 - To persist varibales, we can create a file and then define the values in this file. Create a file named terraform.tfvars with the following contents: 
 
-```
+`
 region = "us-ashburn-1"
-```
+`
 - For all files which match `terraform.tfvars` or `*.auto.tfvars` present in the current directory, Terraform automatically loads them to populate variables. If the file is named something else, you can use the -var-file flag directly to specify a file. 
 
 iii. From Environment variables 
 
 - Terraform will read environment variables in the form of `TF_VAR_name` to find the value for a variable. For example, the TF_VAR_region variable can be set to set the region variable.
 
-```
+`
 TF_VAR_region = "us-ashburn-1"
-```
+`
 
 iv. UI Input
 
@@ -330,16 +333,16 @@ vi. Lists
 
 - Lists can be defined implicitly or either explicitly. You can specify lists in a terraform.tfvars file as well.
 
-```
+`
 cidrs = [ "10.0.0.0/16", "10.1.0.0/16" ]
-```
+`
 v. Maps 
 
 - Maps can be used to define variables that are bound to a particular value. In our case, the image OCIDs that we use for our instances are specific to a particular region. It will be difficult for a user to replace the ocid to keep up with different regions.
 
 - Maps are a way to create variables that are lookup tables. Let us look at the example below: 
 
-```
+`
 variable "InstanceImageOCID" {
   type = "map"
 
@@ -349,13 +352,13 @@ variable "InstanceImageOCID" {
     eu-frankfurt-1 = "ocid1.image.oc1.eu-frankfurt1.aaaaaaaajdge4yzm5j7ci7ryzte7f3qgcekljjw7p6nexhnsvwt6hoybcu3q"
   }
 }
-```
+`
 
 - The variables declared as maps can be referenced as shown below
 
-```
+`
 image = "${var.InstanceImageOCID[var.region]}"
-```
+`
 
 - The image parameter gets the value of the ocid depending upon the value of the region specified.
 
@@ -386,7 +389,7 @@ resource "oci_core_virtual_network" "ExampleVCN" {
 
 resource "oci_core_subnet" "ExampleSubnet" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
-  cidr_block = "10.1.20.0/24"
+  cidr_block = "10.1.1.0/24"
   display_name = "TFExampleSubnet"
   dns_label = "tfexamplesubnet"
   security_list_ids = ["${oci_core_virtual_network.ExampleVCN.default_security_list_id}"]
@@ -451,7 +454,7 @@ data "oci_identity_availability_domains" "ADs" {
 
 - In the below snippet, terraform tries to create an Instance but due to the `depends_on` parameter it waits until object storage bucket is created first.
 
-```
+`
 resource "oci_core_instance" "TFInstance" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1], "name")}"
   compartment_id      = "${var.compartment_ocid}"
@@ -477,7 +480,7 @@ resource "oci_core_instance" "TFInstance" {
 
   depends_on = ["oci_objectstorage_bucket.ExampleBucket"]
 }
-```
+`
 
 ## Provisioners 
 
@@ -549,7 +552,7 @@ resource "null_resource" "provisioner" {
             private_key = "${file(var.ssh_private_key)}"
         }
         source = "./bootstrap.sh"
-        destination = "/home/bootstrap.sh"
+        destination = "/home/opc/bootstrap.sh"
     }    
     
     provisioner "remote-exec" {
@@ -561,9 +564,9 @@ resource "null_resource" "provisioner" {
             private_key = "${file(var.ssh_private_key)}"
         }
         inline = [
-            "chmod +x /home/bootstrap.sh",
-            "cd /home/",
-            "sh bootstrap.sh >> remote-exec.log",
+            "chmod +x /home/opc/bootstrap.sh",
+            "cd /home/opc/",
+            "./bootstrap.sh >> remote-exec.log",
         ]
     }
 }
@@ -571,7 +574,7 @@ resource "null_resource" "provisioner" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta28.PNG?sp=r&st=2020-02-22T01:01:29Z&se=2021-12-31T09:01:29Z&spr=https&sv=2019-02-02&sr=b&sig=gZOvW%2B0dfi%2BylM9YzIApdHjIN6iefTNhVQQZjkIMcMs%3D)
 
-- Along with the provisioners.tf file you also need to create another file called ```bootstrap.sh```. We will be using this file to copy it from local onto the TFInstance resource and then execute it.
+- Along with the `provisioners.tf` file you also need to create another file called `bootstrap.sh`. We will be using this file to copy it from local onto the TFInstance resource and then execute it.
 
 - Copy the below code in the `bootstrap.sh` file and then **Save** it.
 
