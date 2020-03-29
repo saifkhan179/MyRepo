@@ -634,6 +634,8 @@ sudo systemctl restart  firewalld
 
 - As you can see the `TFInstance` gets created first and then the provisioners. File provisioner copies the shell script from terraformOCI folder onto the TFInstance and remote-exec provisioner runs the script on the machine. 
 
+ta66
+
 - As a result of running provisioners, we were able to copy the script to an instance and then install the `httpd` package on the machine and start the service.
 
 3. local-exec provisioner
