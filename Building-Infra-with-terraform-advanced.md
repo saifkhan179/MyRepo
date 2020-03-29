@@ -454,7 +454,7 @@ data "oci_identity_availability_domains" "ADs" {
 
 - In the below snippet, terraform tries to create an Instance but due to the `depends_on` parameter it waits until object storage bucket is created first.
 
-`
+```
 resource "oci_core_instance" "TFInstance" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1], "name")}"
   compartment_id      = "${var.compartment_ocid}"
@@ -471,7 +471,7 @@ resource "oci_core_instance" "TFInstance" {
 
   metadata = {
     ssh_authorized_keys = "${var.ssh_public_key}"
-    #user_data           = "${base64encode(file(var.BootStrapFile))}"
+    user_data           = "${base64encode(file(var.BootStrapFile))}"
   }
 
   timeouts {
@@ -480,7 +480,7 @@ resource "oci_core_instance" "TFInstance" {
 
   depends_on = ["oci_objectstorage_bucket.ExampleBucket"]
 }
-`
+```
 
 ## Provisioners 
 
