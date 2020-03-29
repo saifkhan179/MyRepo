@@ -624,7 +624,7 @@ sudo systemctl restart  firewalld
 - To select `LF` as the end of line sequence, Click on `CRLF` at the bottom right corner of Visual Studio and change it to LF
 
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta29.PNG?sp=r&st=2020-02-22T01:02:25Z&se=2021-12-31T09:02:25Z&spr=https&sv=2019-02-02&sr=b&sig=L6hmmJzDwCHegBQr79ji2Lcdba2Ttm65jQ7ArGfxU0o%3D)
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta29.PNG?sp=r&st=2020-03-29T02:39:02Z&se=2021-12-31T11:39:02Z&spr=https&sv=2019-02-02&sr=b&sig=vInToikbEcRHxLkvcNzgM5XM%2BLf%2BJoZHn02l5vrO6b4%3D)
 
 - If you check your terraformOCI folder, you should see three additional files created namely, compute.tf, provisioner.tf and bootstrap.sh. 
 
@@ -681,6 +681,10 @@ output "InstancePublicIP" {
 - Run ```terraform apply``` command in the terminal window to view the outputs. 
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta35.PNG?sp=r&st=2020-03-02T04:35:40Z&se=2020-12-31T12:35:40Z&spr=https&sv=2019-02-02&sr=b&sig=SvauwW0RgTOh5kQ55s3E6gVbVNGN8yEKRCZREBx82sE%3D)
+
+- Copy the punlic Ip of the instance and paste it a new tab in the Chrome Browser. You should see the Apache httpd Server Home page.
+
+ta67
 
 - Multiple output variables can be defined to retrieve values as per requirement.
 
