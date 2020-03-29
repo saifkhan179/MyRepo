@@ -415,6 +415,34 @@ resource "oci_core_route_table" "ExampleRT" {
   }
 }
 
+resource "oci_core_security_list" "WebSubnet" {
+    compartment_id = "${var.compartment_ocid}"
+    display_name = "Public"
+    vcn_id = "${oci_core_virtual_network.ExampleVCN.id}"
+    egress_security_rules {
+        destination = "0.0.0.0/0"
+        protocol = "6"
+    }
+
+    ingress_security_rules {
+        tcp_options  {
+            max = 80
+            min = 80
+        }
+        protocol = "6"
+        source = "0.0.0.0/0"
+    }
+    ingress_security_rules {
+        tcp_options  {
+            max = 22
+            min = 22
+        }
+        protocol = "6"
+        source = "0.0.0.0/0"
+    }
+	
+}
+
 data "oci_identity_availability_domains" "ADs" {
   compartment_id = "${var.tenancy_ocid}"
 }
@@ -590,6 +618,11 @@ sudo firewall-offline-cmd --add-service=http
 sudo systemctl enable  firewalld
 sudo systemctl restart  firewalld
 ```
+
+- End of Line Sequence should be `LF` for the script. Otherwise you will get errors while executing the script.
+
+- To select `LF` as the end of line sequence, Click on `CRLF` at the bottom right corner of Visual Studio and change it to LF
+
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta29.PNG?sp=r&st=2020-02-22T01:02:25Z&se=2021-12-31T09:02:25Z&spr=https&sv=2019-02-02&sr=b&sig=L6hmmJzDwCHegBQr79ji2Lcdba2Ttm65jQ7ArGfxU0o%3D)
 
