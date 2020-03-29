@@ -634,7 +634,7 @@ sudo systemctl restart  firewalld
 
 - As you can see the `TFInstance` gets created first and then the provisioners. File provisioner copies the shell script from terraformOCI folder onto the TFInstance and remote-exec provisioner runs the script on the machine. 
 
-ta66
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta66.PNG?sp=r&st=2020-03-29T03:11:12Z&se=2021-12-31T12:11:12Z&spr=https&sv=2019-02-02&sr=b&sig=v1tRfVx3oMJzix0gl3x%2BGlRLHTnPV2WO3A9mKyvl5jA%3D)
 
 - As a result of running provisioners, we were able to copy the script to an instance and then install the `httpd` package on the machine and start the service.
 
@@ -682,9 +682,9 @@ output "InstancePublicIP" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta35.PNG?sp=r&st=2020-03-02T04:35:40Z&se=2020-12-31T12:35:40Z&spr=https&sv=2019-02-02&sr=b&sig=SvauwW0RgTOh5kQ55s3E6gVbVNGN8yEKRCZREBx82sE%3D)
 
-- Copy the punlic Ip of the instance and paste it a new tab in the Chrome Browser. You should see the Apache httpd Server Home page.
+- Copy the Public Ip of the instance and paste it a new tab in the Chrome Browser. You should see the Apache httpd Server Home page.
 
-ta67
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta61.PNG?sp=r&st=2020-03-22T08:02:27Z&se=2021-12-31T17:02:27Z&spr=https&sv=2019-02-02&sr=b&sig=EPmlDXBVzbFcpnqxqLRwotyB%2BLulxEAgRP0Mq1d4NHE%3D)
 
 - Multiple output variables can be defined to retrieve values as per requirement.
 
