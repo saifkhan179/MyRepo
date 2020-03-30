@@ -326,7 +326,7 @@ module "network" {
 
 - If you Open the network folder, you should see three configuration files namely ``network.tf``, ``variables.tf`` and ``output.tf``. These are configuration files for our network module.
 
-- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands in the Terminal window. Answer **Yes** when prompted.
+- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands in the Terminal window. Answer **yes** when prompted.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta49.PNG?sp=r&st=2020-03-22T03:17:49Z&se=2021-12-31T12:17:49Z&spr=https&sv=2019-02-02&sr=b&sig=BR%2FkHbXF%2FyKvDhlz%2FYLwUJQxME%2F5jZLLmj2uwp1HUak%3D)
 
@@ -393,7 +393,7 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp
 
 - In addition to the files you had in the terraformModules folder, at this stage you should also have an updated ``main.tf`` file, ``bootstrap.sh`` file, ``ckey`` and ``instance`` folder.
 
-- Now let us run terraform commands to provision a compute instance in the VCN created earlier. Run ```terraform init``` and ```terraform apply``` commands in the terminal window.
+- Now let us run terraform commands to provision a compute instance in the VCN created earlier. Run ```terraform init``` and ```terraform apply``` commands in the terminal window. Answer **yes** when prompted.
 
 - This will provision a compute instance and copy the bootstrap.sh file to the created instance and install packages on the machine.
 
@@ -401,7 +401,7 @@ curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp
 
 - If you click on the instance folder, you should see a provisioner.tf file. This file has two provisioners namely ``file`` and ``remote-exec``.
 
-- The `file` provisoiner is used to copy files from local to a provisioned machine, in this case we transferred the bootstrap.sh file onto the instance. The remote-exec provisioner connects to the machine and run some commands onto the machine, in our case we are trying to uodate packages and then install the apache server onto the machine.
+- The `file` provisoiner is used to copy files from local to a provisioned machine, in this case we transferred the bootstrap.sh file onto the instance. The remote-exec provisioner connects to the machine and run some commands onto the machine, in our case we are trying to update packages and then install the apache server onto the machine.
 
 
 3. Creating outputs with modules
@@ -420,7 +420,7 @@ output "InstancePublicIP" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta59.PNG?sp=r&st=2020-03-22T08:01:22Z&se=2021-12-31T17:01:22Z&spr=https&sv=2019-02-02&sr=b&sig=cuhshRNCmX1b1A7Kc%2FrY%2B5B359S2yhfHOQqgzf6tRjw%3D)
 
-- Now run the ```terraform apply``` command in the terminal window to get the outputs. Answer **Yes** when prompted.
+- Now run the ```terraform apply``` command in the terminal window to get the outputs. Answer **yes** when prompted.
 
 - Running the command will spew out the Public and Private IPs of the compute instance. 
 
@@ -440,11 +440,11 @@ output "InstancePublicIP" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta62.PNG?sp=r&st=2020-03-22T08:03:02Z&se=2021-12-31T17:03:02Z&spr=https&sv=2019-02-02&sr=b&sig=PBIUbifaEQMhBZaewfClzUfEv2ZQeKfotfNO5C1ge3c%3D)
 
-- Now run the ```terraform apply``` command in the Terminal window. Answer **Yes** when prompted.
+- Now run the ```terraform apply``` command in the Terminal window. Answer **yes** when prompted.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta63.PNG?sp=r&st=2020-03-22T08:03:24Z&se=2021-12-31T17:03:24Z&spr=https&sv=2019-02-02&sr=b&sig=EBoT0%2B%2FPyp91UjNDrj3LWoby%2B9NYcWtWaEeXspQjVCs%3D)
 
-- Terraform does an in-place modification of the resource and provisiones a new instance with the updated shape of the instance. 
+- Terraform does an in-place modification of the resource and provisiones a new instance with the updated value for instance shape. 
 
 - Switch to OCI Console and Click on Compute > Instances in Menu. Select your compartment under compartment section. Now Click on the TFInstance resource, you should see the updated shape with existing network addresses.  
 
