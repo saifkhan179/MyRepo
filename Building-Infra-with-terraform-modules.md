@@ -122,15 +122,11 @@ cat oci_api_key_public.pem
 
 1. The Tenancy OCID is provided below:
 
-* **Tenant OCID:** 
-
-```{{Tenancy OCID}}```
+* **Tenant OCID:** {{Tenancy OCID}}
 
 2. The User OCID is provided below: 
 
-* **User OCID:** 
-
-```{{User OCID}}```
+* **User OCID:** {{User OCID}}
 
 3. Switch to OCI Console. You should be on the user details page. Scroll Down to see the fingerprint value. Copy and Paste it in Notepad.
 
@@ -144,9 +140,7 @@ cat oci_api_key_public.pem
 
 5. The Compartment OCID is provided below:
 
-* **Compartment OCID:** 
-
-```{{Compartment OCID}}```
+* **Compartment OCID:** {{Compartment OCID}}
 
 6. Switch to Git-Bash. You should be in the ```ocikeys``` folder. Enter the below command to get the value of the private api key. Copy the value and Paste it in Notepad.
 
