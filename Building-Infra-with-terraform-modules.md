@@ -339,7 +339,7 @@ module "network" {
 - Download the compute Module by executing the below command. You should get a zip file in your folder. Once done unzip the file.
 
 ```
-curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/instance.zip?sp=r&st=2020-03-01T20:01:59Z&se=2021-01-01T04:01:59Z&spr=https&sv=2019-02-02&sr=b&sig=BpHXJ%2FBeXePdJKBhVuP2OLQxTOXma%2Fg4ZvmIlDiTa6c%3D" -o compute.zip
+curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/instance.zip?sp=r&st=2020-03-30T21:29:10Z&se=2022-01-01T06:29:10Z&spr=https&sv=2019-02-02&sr=b&sig=CYLRYwVxvLTWB5eUa65nkntYXyYXTY%2Fi2utL%2F5od3Kc%3D" -o compute.zip
 ```
 ```
 unzip compute.zip
@@ -372,18 +372,25 @@ module "instance" {
 
 ```
 #!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl enable  httpd.service
-systemctl start  httpd.service
-firewall-offline-cmd --add-service=http
-systemctl enable  firewalld
-systemctl restart  firewalld
+echo "-----------------update the packages------------------"
+sudo yum update -y
+echo "-----------------install apache-----------------------"
+sudo yum install -y httpd
+sudo systemctl enable  httpd.service
+sudo systemctl start  httpd.service
+sudo firewall-offline-cmd --add-service=http
+sudo systemctl enable  firewalld
+sudo systemctl restart  firewalld
 ```
 
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta52.PNG?sp=r&st=2020-03-22T03:19:04Z&se=2021-12-31T12:19:04Z&spr=https&sv=2019-02-02&sr=b&sig=So0kWlEXn1SZbBDr2IsWF70FHNzUNRV25gQyDb4GAYg%3D)
+- End of Line Sequence should be `LF` for the script. Otherwise you will get errors while executing the script.
 
-- Download the private ssh key for the compute instance by executing the below command in terminal. 
+- To select `LF` as the end of line sequence, Click on `CRLF` at the bottom right corner of Visual Studio and change it to LF
+
+
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta29.PNG?sp=r&st=2020-03-29T02:39:02Z&se=2021-12-31T11:39:02Z&spr=https&sv=2019-02-02&sr=b&sig=vInToikbEcRHxLkvcNzgM5XM%2BLf%2BJoZHn02l5vrO6b4%3D)
+
+- Download the **private ssh key** for the compute instance by executing the below command in terminal. 
 
 ```
 curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp=r&st=2020-02-11T23:40:23Z&se=2022-01-01T07:40:23Z&spr=https&sv=2019-02-02&sr=b&sig=pKQqknoxzn2Xy2Svv%2Bn%2BMJcudaUuSWEso9tm3q81xhY%3D" -o ckey
