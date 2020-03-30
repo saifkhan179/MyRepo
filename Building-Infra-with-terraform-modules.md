@@ -98,7 +98,7 @@ cat oci_api_key_public.pem
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/git-2.PNG?sp=r&st=2020-02-11T06:03:03Z&se=2021-12-31T14:03:03Z&spr=https&sv=2019-02-02&sr=b&sig=l3gwnenaidXbmB7V3SaYyTNCn4bzTPsG9aOQh4Z7QKg%3D)
 
-5. We have created the API signing key and now we need to generate the fingerprint for your user. 
+5. We have created the API signing key and now we need to generate the fingerprint for your user account. 
 
 6. Switch to OCI Console by clicking the Switch Windows button and selecting the Chrome window. 
 
@@ -122,11 +122,15 @@ cat oci_api_key_public.pem
 
 1. The Tenancy OCID is provided below:
 
-* **Tenant OCID:** {{Tenancy OCID}}
+* **Tenant OCID:** 
+
+```{{Tenancy OCID}}```
 
 2. The User OCID is provided below: 
 
-* **User OCID:** {{User OCID}}
+* **User OCID:** 
+
+```{{User OCID}}```
 
 3. Switch to OCI Console. You should be on the user details page. Scroll Down to see the fingerprint value. Copy and Paste it in Notepad.
 
@@ -140,7 +144,9 @@ cat oci_api_key_public.pem
 
 5. The Compartment OCID is provided below:
 
-* **Compartment OCID:** {{Compartment OCID}}
+* **Compartment OCID:** 
+
+```{{Compartment OCID}}```
 
 6. Switch to Git-Bash. You should be in the ```ocikeys``` folder. Enter the below command to get the value of the private api key. Copy the value and Paste it in Notepad.
 
@@ -326,7 +332,7 @@ module "network" {
 
 - If you Open the network folder, you should see three configuration files namely ``network.tf``, ``variables.tf`` and ``output.tf``. These are configuration files for our network module.
 
-- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands in the Terminal window. Answer Yes when prompted.
+- Now let us run terraform commands and provision a Virtual Cloud Network. Run the ```terraform init``` and ```terraform apply``` commands in the Terminal window. Answer **Yes** when prompted.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta49.PNG?sp=r&st=2020-03-22T03:17:49Z&se=2021-12-31T12:17:49Z&spr=https&sv=2019-02-02&sr=b&sig=BR%2FkHbXF%2FyKvDhlz%2FYLwUJQxME%2F5jZLLmj2uwp1HUak%3D)
 
@@ -420,7 +426,9 @@ output "InstancePublicIP" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta59.PNG?sp=r&st=2020-03-22T08:01:22Z&se=2021-12-31T17:01:22Z&spr=https&sv=2019-02-02&sr=b&sig=cuhshRNCmX1b1A7Kc%2FrY%2B5B359S2yhfHOQqgzf6tRjw%3D)
 
-- Now run the ```terraform apply``` command in the terminal window to get the outputs. Running the command will spew out the Public and Private IPs of the compute instance. 
+- Now run the ```terraform apply``` command in the terminal window to get the outputs. Answer **Yes** when prompted.
+
+- Running the command will spew out the Public and Private IPs of the compute instance. 
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta60.PNG?sp=r&st=2020-03-22T08:01:47Z&se=2021-12-31T17:01:47Z&spr=https&sv=2019-02-02&sr=b&sig=tCjsgQiUW3HUwxpfivJIXH8b426NH4pW6uUG7d32Sbk%3D)
 
@@ -438,7 +446,7 @@ output "InstancePublicIP" {
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta62.PNG?sp=r&st=2020-03-22T08:03:02Z&se=2021-12-31T17:03:02Z&spr=https&sv=2019-02-02&sr=b&sig=PBIUbifaEQMhBZaewfClzUfEv2ZQeKfotfNO5C1ge3c%3D)
 
-- Now run the ```terraform apply``` command in the Terminal window. Answer `Yes` when prompted.
+- Now run the ```terraform apply``` command in the Terminal window. Answer **Yes** when prompted.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/Images/ta63.PNG?sp=r&st=2020-03-22T08:03:24Z&se=2021-12-31T17:03:24Z&spr=https&sv=2019-02-02&sr=b&sig=EBoT0%2B%2FPyp91UjNDrj3LWoby%2B9NYcWtWaEeXspQjVCs%3D)
 
