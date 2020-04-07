@@ -108,6 +108,10 @@ In this section we will create a public/private SSH key pair. These keys will be
 
 **Step 2.** Enter the command ssh-keygen in git-bash window.
 
+```
+ssh-keygen
+```
+
 **TIP:**
 You can swap between the OCI window and any other application (git-bash etc.) by clicking the Switch Window icon beside apps icon. 
 
@@ -132,7 +136,11 @@ You can swap between the OCI window and any other application (git-bash etc.) by
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/7.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-**Step 5.** In the git-bash terminal window, type â€˜cat /C/Users/PhotonUser/.ssh/id_rsa.pubâ€™, Highlight the SSH key and copy (using the mouse or the keyboard (ctrl-c)
+**Step 5.** In the git-bash terminal window, type cat /C/Users/PhotonUser/.ssh/id_rsa.pub, Highlight the SSH key and copy (using the mouse or the keyboard (ctrl-c)
+
+```
+cat /c/Users/PhotonUser/.ssh/id_rsa,pub
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/8.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -164,23 +172,23 @@ In this section we will create a Compute instance with a Public IP address using
 
 **Step 3.** Click Create Instance. Fill out the dialog box:
 
-         3.1 Name: Enter a name (e.g. "Ansible_VM").
+ 3.1 Name: Enter a name (e.g. "Ansible_VM").
 
-         3.2 Availability Domain: Select the first available domain.
+ 3.2 Availability Domain: Select the first available domain.
 
-         3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
+ 3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
 
-         3.4 Shape: Select VM.Standard.E2.1 (1 OCPU, 7GB RAM).
+ 3.4 Shape: Select VM.Standard.E2.1 (1 OCPU, 7GB RAM).
 
-         3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
+ 3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
 
 You can swap between the OCI window and any other application (notepad etc.) by clicking the Switch Window icon beside apps icon. 
 
-         3.6 Virtual Cloud Network: Select the VCN you created in the previous section.
+ 3.6 Virtual Cloud Network: Select the VCN you created in the previous section.
 
-         3.7 Subnet: Select the first available subnet.
+ 3.7 Subnet: Select the first available subnet.
 
-         3.8 Click Create Instance.
+ 3.8 Click Create Instance.
 
 **Note:** Leave other options in the dialog box as is other than the options mentioned above. 
 
@@ -206,13 +214,16 @@ In this section we will SSH into the Compute instance using its Public IP addres
 **Step 1.** Bring up a new git terminal or switch to the existing one (if you still have it open).
 
 **Tip:** 
+
 If the terminal was closed simply launch a new one using the Apps icon .
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/13.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
  
  **Step 2.** In the git-bash Terminal Window Type the command
 
-```cd /C/Users/PhotonUser/.ssh/  ```
+```
+cd /C/Users/PhotonUser/.ssh/
+```
 
 Type ls and verify the id_rsa file exists.
        
@@ -223,7 +234,9 @@ Type ls and verify the id_rsa file exists.
 
 **Step 3.** To login to the running instance, we will SSH into it. Type the command            
 
-```ssh â€“i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE>```
+```bash
+ssh -i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE>
+```
 
 **Note:** User name is â€˜opcâ€™. <PUBLIC_IP_OF_COMPUTE_INSTANCE> should be the actual IP address which was noted in previous section. (Example: 129.0.1.10)
 
@@ -232,7 +245,7 @@ Type ls and verify the id_rsa file exists.
 **Step 4.** Enter `yes` when prompted for security message. 
 **Step 5.** Verify the prompt shows 
 
- ``` opc@<YOUR_VM_NAME> ``` (below example shows the command prompt for Compute instance)
+ ```opc@<YOUR_VM_NAME>``` (below example shows the command prompt for Compute instance)
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/16.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -240,9 +253,13 @@ Type ls and verify the id_rsa file exists.
 
 **Step 7.** The "sudo" command allows user to run programs with elevated privileges and "su" command allows you to become another user. Running the following command will default to root account(system administrator account) which allows installing and configuring ansible using yum package manager.
 
-```sudo su -```
+```
+sudo su -
+```
 
-```yum install -y ansible```
+```
+yum install -y ansible
+```
  
 **Note:** Along with Anisble package, multiple pre-requisite packages are being installed which takes a couple of minutes.
 
@@ -280,7 +297,9 @@ Step 10. In the Step 9, we have added local server's ip address(127.0.0.1) to th
 
 Step 11. To validate Ansible is installed and configured correctly, run the following command
 
+ ```
  ansible --version
+ ```
 
 **Note:** It is ok, if the above command returns different version of ansible. 
 
@@ -298,11 +317,11 @@ An inventory file is a list of managed nodes which are also called "hosts". Ansi
 
 Press "Enter", when asked for the following 
 
-    a) Enter file in which to save the key 
+ a) Enter file in which to save the key 
 
-    b) Enter passphrase
+ b) Enter passphrase
 
-    c) Enter passphrase again
+ c) Enter passphrase again
 
 **Tip**
 No Passphrase is required.
@@ -317,9 +336,13 @@ In this example Ansible control machine and the managed node is the same server.
 
 Execute the following commands to copy the public key
 
-```cd /root/.ssh```
+```
+cd /root/.ssh
+```
 
-```cp id_rsa.pub authorized_keys```
+```
+cp id_rsa.pub authorized_keys
+```
 
 Enter "yes" when promted to overwrite authorized_keys file.
 
@@ -330,7 +353,9 @@ Enter "yes" when promted to overwrite authorized_keys file.
 
 Execute the following command which pings the servers in the inventory file.
 
-```ansible all -m ping```
+```
+ansible all -m ping
+```
 
 Enter "yes" when prompted to add server ip to the known_hosts file. 
 
@@ -348,9 +373,14 @@ Ansible Playbook are the files where ansible code is written. They are written i
 Both Ansible control machine and managed node are same in this tutorial. All the packages that are being installed and managed are done on the same machine. 
 
 **Step 1.** Create a folder named Ansible and store all the playbooks that are required in this tutorial. Create a YAML file inside the folder using the following commands
+
 ```
 mkdir /root/ansible
+```
+```
 cd /root/ansible
+```
+```
 vi install_package.yaml
 ```
 
@@ -369,7 +399,11 @@ vi install_package.yaml
 **Note:**
 Before installing htop with ansible. Check if htop is already installed on a server and remove if it is installed using the following commands
 
-Uninstall htop package - ```yum -y remove htop```
+Uninstall htop package - 
+
+```
+yum -y remove htop
+```
 
 **Step 4.** Run the command "ansible-playbook -s install_package.yaml". Ansible checks the inventory file for the local group and installs the package htop with latest version on the servers. 
 
@@ -409,13 +443,17 @@ In this example, we will check the system facts, see if a specific package is av
 
 To list all the default facts of the machine run the following code:
 
-```ansible -m setup local```
+```
+ansible -m setup local
+```
 
 This command prints all the facts that ansible collects about the machine. If you want it to display single fact, use grep.
 
 The following command displays ansible distribution facts which playbook collects before execution: 
 
-```ansible -m setup local | grep ansible_distribution```
+```
+ansible -m setup local | grep ansible_distribution
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/24.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -438,7 +476,9 @@ Remove wget package if it is already installed on the server using "yum -y remov
 ```
 **Step 4.** First task in the above code checks to see if the package is installed and registers the result into a variable "installedpkg". Second task prints the value stored in the variable. Run the following command to execute the playbook.
 
-```ansible-playbook -s condition.yaml```
+```
+ansible-playbook -s condition.yaml
+```
  
  ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/25.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -467,7 +507,11 @@ Remove wget package if it is already installed on the server using "yum -y remov
 
 **Step 7.**  In the last task of the playbook, we check the length to validate if the package needs to be installed. 
 
-Run the command ```ansible-playbook -s condition.yaml```
+Run the command 
+
+```
+ansible-playbook -s condition.yaml
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/26.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -487,15 +531,24 @@ In this section, we will discuss about the variables and loops in Ansible playbo
 
 **Step 3.** If the packages are already installed on the server, Ansible skips installation of the specific package, to validate the playbook installs the required packages, they can be removed with the command
 
-```yum remove -y wget telnet htop```
+```
+yum remove -y wget telnet htop
+```
 
-**Step 4.** Execute the playbook using the command ```ansible-playbook -s install_package.yaml``` to install the packages
+**Step 4.** Execute the playbook using the below command to install the packages.
+
+```
+ansible-playbook -s install_package.yaml
+``` 
+
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/28.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 5.** All the packages are installed on the server. To verify if the package is installed run the command:
 
-```yum list <<package_name>>```
+```
+yum list <<package_name>>
+```
 
 ## Configuring Apache using Ansible
 
@@ -509,13 +562,17 @@ In this section, we will install Apache on the server, Update the configuration 
 
 **Step 4.** Run the following command to execute the playbook httpd.yaml. This playbook installs Apache, updates a file and start Apache service. 
 
-```ansible-playbook -s httpd.yaml```
+```
+ansible-playbook -s httpd.yaml
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/29.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 5.** We have created a template and updated the template for the index file of httpd. To validate if the created file is available, check the file with the command:
 
-```cat /usr/share/httpd/noindex/index.html```
+```
+cat /usr/share/httpd/noindex/index.html
+```
 
 
 Conclusion:
