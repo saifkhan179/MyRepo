@@ -238,7 +238,7 @@ Type ls and verify the id_rsa file exists.
 ssh -i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE>
 ```
 
-**Note:** User name is â€˜opcâ€™. <PUBLIC_IP_OF_COMPUTE_INSTANCE> should be the actual IP address which was noted in previous section. (Example: 129.0.1.10)
+**Note:** User name is opc. <PUBLIC_IP_OF_COMPUTE_INSTANCE> should be the actual IP address which was noted in previous section. (Example: 129.0.1.10)
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/15.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -314,6 +314,10 @@ Ansible control machine is a server on which ansible is installed and executes a
 An inventory file is a list of managed nodes which are also called "hosts". Ansible is not installed on managed nodes.
 
 **Step 1.** In the terminal, enter the command "ssh-keygen".
+
+```
+ssh-keygen
+```
 
 Press "Enter", when asked for the following 
 
@@ -417,8 +421,9 @@ To list all the versions of httpd package available, execute the command "yum li
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/22.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-```yml
 example: 
+
+```yml
 
 - name: install one specific version of Apache
   yum:
@@ -555,6 +560,13 @@ yum list <<package_name>>
 In this section, we will install Apache on the server, Update the configuration of Apache using the template and start the Apache server. 
 
 **Step 1.** Create a new file using the command "touch /root/ansible/httpd.yaml" and "touch /root/ansible/index.html"
+
+```
+touch /root/ansible/httpd.yaml
+```
+```
+touch /root/ansible/index.html
+```
 
 **Step 2.**  Update index.html file with the following code
 
