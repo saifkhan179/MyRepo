@@ -97,7 +97,7 @@ Choose Compartment:  {{compartment-name}}
 **Step 4.** Fill out the details for Dialog Box that appears with the following information.<br>
      4.1 For the NAME, enter an easy to remember name, like for example, "my_vcn"<br>
      4.2 Ensure Create in Compartment is set to the right compartment.<br>
-	   4.3 Enter a value for the CIDR block, for example 10.0.0.0/16<br>
+     4.3 Enter a value for the CIDR block, for example 10.0.0.0/16<br>
      4.4 Enter a value for Public Subnet CIDR Block, for example 10.0.1.0/24<br>
      4.5 Enter a value for Public Subnet CIDR Block, for example 10.0.2.0/24<br>
      4.6 Click Next and then Click Create.
@@ -147,7 +147,9 @@ You can swap between the OCI window and any other application (git-bash etc.) by
 
 **Step 5.** In the git-bash terminal window, type 
 
-```cat /C/Users/PhotonUser/.ssh/id_rsa.pub```
+```
+cat /C/Users/PhotonUser/.ssh/id_rsa.pub
+```
 
 Highlight the SSH key and copy (using the mouse or the keyboard (ctrl-c)
 
@@ -182,23 +184,23 @@ In this section we will create a Compute instance with a Public IP address using
 
 **Step 3.** Click Create Instance. Fill out the dialog box:
 
-         3.1 Name: Enter a name (e.g. "Ansible_VM").
+  3.1 Name: Enter a name (e.g. "Ansible_VM").
 
-         3.2 Availability Domain: Select the first available domain.
+  3.2 Availability Domain: Select the first available domain.
 
-         3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
+  3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
 
-         3.4 Shape: Select VM.Standard1.1 (1 OCPU, 7GB RAM).
+  3.4 Shape: Select VM.Standard1.1 (1 OCPU, 7GB RAM).
 
-         3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
+  3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
 
 **TIP:** You can swap between the OCI window and any other application (notepad etc.) by clicking the Switch Window icon beside apps icon. 
 <br>
-         3.6 Virtual Cloud Network: Select the VCN you created in the previous section.
+  3.6 Virtual Cloud Network: Select the VCN you created in the previous section.
 
-         3.7 Subnet: Select the first available subnet.
+  3.7 Subnet: Select the first available subnet.
 
-         3.8 Click Create Instance.
+  3.8 Click Create Instance.
 
 **Note:** Leave other options in the dialog box as is other than the options mentioned above. 
 
@@ -230,7 +232,9 @@ In this section we will SSH into one of the Compute instances using its Public I
 
 **Step 2.** In the git-bash Terminal Window Type the command:
 
-```cd /C/Users/PhotonUser/.ssh/  ```
+```
+cd /C/Users/PhotonUser/.ssh/
+```
 
 Type ls and verify the id_rsa file exists.
 
@@ -240,7 +244,9 @@ Type ls and verify the id_rsa file exists.
 
 **Step 3.** To login to the running instance, we will SSH into it. Type the command:
 
-```ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_1>```
+```
+ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_1>
+```
 
 **Note:** User name is ‘opc’. <PUBLIC_IP_OF_COMPUTE_INSTANCE_1> should be the actual IP address which was noted in previous section for example:  129.0.1.10 
 
@@ -250,7 +256,10 @@ Type ls and verify the id_rsa file exists.
 
 **Step 5.** Verify the prompt shows 
 
- ```opc@<YOUR_VM_NAME>``` (below example shows the command prompt for Compute instance)
+ ```
+ opc@<YOUR_VM_NAME>
+ ``` 
+ (below example shows the command prompt for Compute instance)
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/advanced-ansible-playbooks/images/18.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -259,9 +268,13 @@ Type ls and verify the id_rsa file exists.
 
 **Step 7.** The "sudo" command allows user to run programs with elevated privileges and "su" command allows you to become another user. Running the following command will default to root account (system administrator account) which allows installing and configuring ansible using yum package manager.
 
-```sudo su -```
+```
+sudo su -
+```
 
-```yum install -y ansible```
+```
+yum install -y ansible
+```
 
 **Note:** Along with Anisble package, multiple pre-requisite packages are being installed which takes a couple of minutes.
 
@@ -297,6 +310,7 @@ To learn vi text editor "https://ryanstutorials.net/linuxtutorial/vi.php"
 Any other user preferred text editor can be used to update files.
 
 **Step 11.** Update the created hosts file in the step 8 with the following data:
+
 ```
 [local]
 127.0.0.1
@@ -332,11 +346,11 @@ ssh-keygen
 
 Press "Enter", when asked for the following:
 
-    a) Enter file in which to save the key 
+a) Enter file in which to save the key 
 
-    b) Enter passphrase
+b) Enter passphrase
 
-    c) Enter passphrase again
+c) Enter passphrase again
 
 **Tip:** No Passphrase is required.
 
@@ -352,7 +366,6 @@ Execute the following commands to copy the public key:
 ```
 cd /root/.ssh
 ```
-
 ```
 cp id_rsa.pub authorized_keys
 ```
