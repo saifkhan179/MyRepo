@@ -95,11 +95,11 @@ Choose Compartment:  {{compartment-name}}
 **Step 3.** Click Create Networking Quickstart. Now click **VCN with Internet Connectivity** and click **Start Workflow**
 
 **Step 4.** Fill out the details for Dialog Box that appears with the following information.<br>
-     4.1 For the NAME, enter an easy to remember name, like for example, "my_vcn"<br>
+     4.1 For the NAME, enter an easy to remember name, like for example, `my_vcn`<br>
      4.2 Ensure Create in Compartment is set to the right compartment.<br>
-     4.3 Enter a value for the CIDR block, for example 10.0.0.0/16<br>
-     4.4 Enter a value for Public Subnet CIDR Block, for example 10.0.1.0/24<br>
-     4.5 Enter a value for Public Subnet CIDR Block, for example 10.0.2.0/24<br>
+     4.3 Enter a value for the CIDR block, for example `10.0.0.0/16`<br>
+     4.4 Enter a value for Public Subnet CIDR Block, for example `10.0.1.0/24`<br>
+     4.5 Enter a value for Public Subnet CIDR Block, for example `10.0.2.0/24`<br>
      4.6 Click Next and then Click Create.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/ta68.PNG?sp=r&st=2020-03-31T04:29:47Z&se=2021-12-31T13:29:47Z&spr=https&sv=2019-02-02&sr=b&sig=fvUesivkSsBdS2JEi%2BYPAxo4OHDZKsd5vwJUnC%2BvLkQ%3D)
@@ -116,6 +116,7 @@ In this section we will create a public/private SSH key pair. These keys will be
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/advanced-ansible-playbooks/images/6.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 2.** Enter the command ssh-keygen in git-bash window.
+
 ```
 ssh-keygen
 ```
@@ -183,13 +184,13 @@ In this section we will create a Compute instance with a Public IP address using
 
 **Step 3.** Click Create Instance. Fill out the dialog box:
 
-  3.1 Name: Enter a name (e.g. "Ansible_VM").
+  3.1 Name: Enter a name (e.g. `Ansible_VM`).
 
   3.2 Availability Domain: Select the first available domain.
 
   3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
 
-  3.4 Shape: Select VM.Standard1.1 (1 OCPU, 7GB RAM).
+  3.4 Shape: Select `VM.Standard.E2.1` (1 OCPU, 8GB RAM).
 
   3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
 
@@ -251,7 +252,7 @@ ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_1>
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/advanced-ansible-playbooks/images/17.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-**Step 4.** Enter ‘yes’ when prompted for security message. 
+**Step 4.** Enter `yes` when prompted for security message. 
 
 **Step 5.** Verify the prompt shows 
 
@@ -393,7 +394,7 @@ sudo su -
 cd /root/.ssh/
 ```
 ```
-vi authorized_keys​
+vi authorized_keys
 ```
 Copy the key into authorized_keys file 
  
@@ -497,7 +498,10 @@ In this section, we will learn about task delegation. In a playbook, if a pertic
 
 Step 1: Create a new file under the folder ansible with the following command
 
+```
 touch /root/ansible/delegation.yaml
+```
+
 Update the above created file with the code 
 
 ```
