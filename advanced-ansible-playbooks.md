@@ -337,8 +337,7 @@ Ansible control machine is a server on which Ansible is installed and executes A
 
 An inventory file is a list of managed nodes which are also called "hosts". Ansible is not installed on managed nodes.
 
-**Step 1.** In the terminal of Ansible Control Machine (where ansible is installed), enter the command 
-
+**Step 1.** In the terminal of Ansible Control Machine (where ansible is installed), enter the command:
 ```
 ssh-keygen
 ```
