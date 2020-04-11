@@ -116,7 +116,6 @@ In this section we will create a public/private SSH key pair. These keys will be
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/advanced-ansible-playbooks/images/6.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 2.** Enter the command ssh-keygen in git-bash window.
-
 ```
 ssh-keygen
 ```
@@ -271,7 +270,6 @@ ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_1>
 ```
 sudo su -
 ```
-
 ```
 yum install -y ansible
 ```
