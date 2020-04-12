@@ -125,18 +125,17 @@ Choose Compartment: {{compartment-name}}
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/4.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-**Step 3.** Click Create Virtual Cloud Network. 
+**Step 3.** Click Create Networking Quickstart. Now click **VCN with Internet Connectivity** and click **Start Workflow**
 
 **Step 4.** Fill out the details for Dialog Box that appears with the following information.<br>
-     4.1 Ensure Create in Compartment is set to the right compartment.<br>
-     4.2 For the NAME, enter an easy to remember name, like for example, "my_vcn"<br>
-     4.3 Check the radio button Virtual Cloud Network Plus Related Resources option to ensure we create a VCN that can accommodate other OCI resources.
-     <br>
-     4.4 Leave the remainder of the fields in the Dialog Box as is.<br>
-     4.5 Click Create Virtual Cloud Network to create the VCN<br>
-     4.6 Click Close to close VCN Dialog Box.
-![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/5.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+     4.1 For the NAME, enter an easy to remember name, like for example, `my_vcn`<br>
+     4.2 Ensure Create in Compartment is set to the right compartment.<br>
+     4.3 Enter a value for the CIDR block, for example `10.0.0.0/16`<br>
+     4.4 Enter a value for Public Subnet CIDR Block, for example `10.0.1.0/24`<br>
+     4.5 Enter a value for Public Subnet CIDR Block, for example `10.0.2.0/24`<br>
+     4.6 Click Next and then Click Create.
 
+![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/ta68.PNG?sp=r&st=2020-03-31T04:29:47Z&se=2021-12-31T13:29:47Z&spr=https&sv=2019-02-02&sr=b&sig=fvUesivkSsBdS2JEi%2BYPAxo4OHDZKsd5vwJUnC%2BvLkQ%3D)
 **Step 5.** A Virtual Cloud Network will be created and the name that was given will appear as the name of the VCN on the OCI Console.
 
 ## Create Public and Private SSH Keypair to Login to the Compute Instance
@@ -173,8 +172,12 @@ You can swap between the OCI window and any other application (git-bash etc.) by
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/8.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-**Step 5.** In the git-bash terminal window, 
-type ```cat /C/Users/PhotonUser/.ssh/id_rsa.pub`` <br> Highlight the SSH key and copy (using the mouse or the keyboard (ctrl-c)
+**Step 5.** In the git-bash terminal window, type 
+
+```
+cat /C/Users/PhotonUser/.ssh/id_rsa.pub
+``` 
+Highlight the SSH key and copy (using the mouse or the keyboard (ctrl-c)
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/9.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -206,23 +209,23 @@ In this section we will create a Compute instance with a Public IP address using
 
 **Step 3.** Click Create Instance. Fill out the dialog box:
 
-         3.1 Name: Enter a name (e.g. "Ansible_VM").
+  3.1 Name: Enter a name (e.g. `Ansible_VM`).
 
-         3.2 Availability Domain: Select the first available domain.
+  3.2 Availability Domain: Select the first available domain.
 
-         3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
+  3.3 Image Operating System: For the image, we recommend using the Latest Oracle Linux available.
 
-         3.4 Shape: Select VM.Standard1.1 (1 OCPU, 7GB RAM).
+  3.4 Shape: Select `VM.Standard.E2.1` (1 OCPU, 8GB RAM).
 
-         3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
+  3.5 SSH Keys: Select the PASTE SSH KEYS radio button and Paste the Public Key you saved in Notepad in the previous section.
 
 You can swap between the OCI window and any other application (notepad etc.) by clicking the Switch Window icon beside apps icon. 
 <br>
-         3.6 Virtual Cloud Network: Select the VCN you created in the previous section.
+  3.6 Virtual Cloud Network: Select the VCN you created in the previous section.
 
-         3.7 Subnet: Select the first available subnet.
+  3.7 Subnet: Select the first available subnet.
 
-         3.8 Click Create Instance.
+  3.8 Click Create Instance.
 
 **Note:** Leave other options in the dialog box as is other than the options mentioned above. 
 
@@ -257,7 +260,9 @@ In this section we will SSH into one of the Compute instances using its Public I
 
 **Step 2.** In the git-bash Terminal Window Type the command:
 
-```cd /C/Users/PhotonUser/.ssh/  ```
+```
+cd /C/Users/PhotonUser/.ssh/
+```
 
 Type ls and verify the id_rsa file exists.
 
@@ -268,18 +273,23 @@ Type ls and verify the id_rsa file exists.
 
 **Step 3.** To login to the running instance, we will SSH into it. Type the command:
 
-```ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_1>```
+```
+ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_1>
+```
 
 **Note:** User name is ‘opc’. <PUBLIC_IP_OF_COMPUTE_INSTANCE_1> should be the actual IP address which was noted in previous section for example:  129.0.1.10 
 
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/18.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-**Step 4.** Enter ‘yes’ when prompted for security message. 
+**Step 4.** Enter `yes` when prompted for security message. 
 
 **Step 5.** Verify the prompt shows 
 
- ```opc@<YOUR_VM_NAME>``` (below example shows the command prompt for Compute instance)
+ ```
+ opc@<YOUR_VM_NAME>
+ ``` 
+ (below example shows the command prompt for Compute instance)
 
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/19.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
@@ -288,9 +298,12 @@ Type ls and verify the id_rsa file exists.
 
 **Step 7.** The "sudo" command allows user to run programs with elevated privileges and "su" command allows you to become another user. Running the following command will default to root account (system administrator account) which allows installing and configuring ansible using yum package manager.
 
-```sudo su -```
-
-```yum install -y ansible```
+```
+sudo su -
+```
+```
+yum install -y ansible
+```
 
 **Note:** Along with Anisble package, multiple pre-requisite packages are being installed which takes a couple of minutes.
 
@@ -298,9 +311,11 @@ Type ls and verify the id_rsa file exists.
 
 **Step 9.** To login to the Second running instance, we will SSH into it. Type the command
 
-```ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_2>```
+```
+ssh –i id_rsa opc@<PUBLIC_IP_OF_COMPUTE_INSTANCE_2>
+```
 
-Enter ‘yes’ when prompted for security message. 
+Enter `yes` when prompted for security message. 
 
 **Step 10.** Ansible has a default inventory file created which is located at "/etc/ansible/hosts". Inventory file contains a list of nodes which are managed/configured by ansible.
 
@@ -333,7 +348,9 @@ Any other user preferred text editor can be used to update files.
 
 **Step 13.** To validate Ansible is installed and configured correctly, run the following command:
 
-```ansible --version```
+```
+ansible --version
+```
 
 **Note:** It is ok, if the above command returns different version of ansible. 
 
@@ -347,7 +364,11 @@ Ansible control machine is a server on which Ansible is installed and executes A
 
 An inventory file is a list of managed nodes which are also called "hosts". Ansible is not installed on managed nodes.
 
-**Step 1.** In the terminal of Ansible Control Machine (where ansible is installed), enter the command "ssh-keygen".
+**Step 1.** In the terminal of Ansible Control Machine (where ansible is installed), enter the command:
+
+```
+ssh-keygen
+```
 
 Press "Enter", when asked for the following:
 
@@ -368,17 +389,22 @@ Press "Enter", when asked for the following:
 
 Execute the following commands to copy the public key:
 
-```cd /root/.ssh```
+```
+cd /root/.ssh
+```
+```
+cp id_rsa.pub authorized_keys
+```
 
-```cp id_rsa.pub authorized_keys```
-
-Enter "yes" when promted to overwrite authorized_keys file.
+Enter `yes` when promted to overwrite authorized_keys file.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/23.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 3.** Open authorized_keys and copy the data using the following command:
 
-``` cat /root/.ssh/authorized_keys```
+```
+cat /root/.ssh/authorized_keys
+```
             
 Highlight the SSH key and copy (using the mouse)
 
@@ -402,9 +428,11 @@ Copy the key into authorized_keys file
 
 **Step 5.** In the Ansible Control Machine, Check to see if Ansible is able to connect to the servers, defined in the inventory file that was created in the previous section. Execute the following command which pings the servers in the inventory file.
 
-```ansible all -m ping```
+```
+ansible all -m ping
+```
 
-Enter "yes" when prompted to add server ip to the known_hosts file. You might need to type twice as 2 hosts are added to the known_hosts file.
+Enter `yes` when prompted to add server ip to the known_hosts file. You might need to type twice as 2 hosts are added to the known_hosts file.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/26.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -433,7 +461,9 @@ ansible-galaxy init create_user
 
 **Step 2.** Under the folder create_user, navigate to the tasks directory by entering:
 
-```cd tasks/```
+```
+cd tasks/
+```
 
 Next, enter vi main.yml to edit the file "main.yaml", then update it with the following code (see screenshot below):
 
@@ -472,11 +502,17 @@ In the above playbook, we are executing the role "create_user" in the local grou
 
 **Step 4.** Execute the following command to run the playbook and create a new user "Sysgain"
 
-```ansible-playbook /root/ansible/Create_user.yaml```
+```
+ansible-playbook /root/ansible/Create_user.yaml
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/32.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
-**Step 5.** Hosts section of the playbook is defined as "local" which create's the user in the local server(Ansible Control Machine). To create a user in all the servers mentioned in the ansible inventory file, Update the hosts section to "all" and run the command **```ansible-playbook /root/ansible/Create_user.yaml```**
+**Step 5.** Hosts section of the playbook is defined as "local" which create's the user in the local server(Ansible Control Machine). To create a user in all the servers mentioned in the ansible inventory file, Update the hosts section to "all" and run the command 
+
+```
+ansible-playbook /root/ansible/Create_user.yaml
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/33.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/34.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
