@@ -136,6 +136,7 @@ Choose Compartment: {{compartment-name}}
      4.6 Click Next and then Click Create.
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible/images/ta68.PNG?sp=r&st=2020-03-31T04:29:47Z&se=2021-12-31T13:29:47Z&spr=https&sv=2019-02-02&sr=b&sig=fvUesivkSsBdS2JEi%2BYPAxo4OHDZKsd5vwJUnC%2BvLkQ%3D)
+
 **Step 5.** A Virtual Cloud Network will be created and the name that was given will appear as the name of the VCN on the OCI Console.
 
 ## Create Public and Private SSH Keypair to Login to the Compute Instance
@@ -372,11 +373,11 @@ ssh-keygen
 
 Press "Enter", when asked for the following:
 
-    a) Enter file in which to save the key 
+ a) Enter file in which to save the key 
 
-    b) Enter passphrase
+ b) Enter passphrase
 
-    c) Enter passphrase again
+ c) Enter passphrase again
 
 **Tip:** No Passphrase is required.
 
@@ -453,7 +454,11 @@ Ansible has an inbuilt tool ansible-galaxy which is used to create roles. Roles 
  
 ```sh
 mkdir -p /root/ansible/roles
+```
+```
 cd /root/ansible/roles
+```
+```
 ansible-galaxy init create_user
 ```
 
@@ -494,6 +499,7 @@ In the above code, we are creating a new user named Sysgain. The attribute "beco
 ```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/30.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/31.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 In the above playbook, we are executing the role "create_user" in the local group(inventory file) which is defined in the host section.
@@ -515,13 +521,16 @@ ansible-playbook /root/ansible/Create_user.yaml
 ```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/33.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/34.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 In the above execution, User Sysgain was only created in the remote server as the user already exists in the local machine.
 
 **Step 6.** To check if the User(Sysgain) is created in the machines, run the following command
 
-```awk -F ":" '/^Sysgain/{print $1}' /etc/passwd```
+```
+awk -F ":" '/^Sysgain/{print $1}' /etc/passwd
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/35.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -533,9 +542,13 @@ In the local machine we will install Apache and the remote node we will be insta
 
 **Step 1.**  Inside the directory roles, create a new role named "apache". This role is used to install/configure and manage the apache service. 
 
- ```ansible-galaxy init /root/ansible/roles/apache```
+ ```
+ ansible-galaxy init /root/ansible/roles/apache
+ ```
 
- ```ansible-galaxy init /root/ansible/roles/tomcat```
+ ```
+ ansible-galaxy init /root/ansible/roles/tomcat
+ ```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/36.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -554,6 +567,7 @@ In the local machine we will install Apache and the remote node we will be insta
        name: httpd
        state: started
 ```
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/37.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 In the above code, we are installing the latest version of Apache and starting the service of Apache. 
@@ -573,6 +587,7 @@ In the above code, we are installing the latest version of Apache and starting t
        name: tomcat
        state: started
 ```
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/38.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 In the above code, we are installing the latest version of tomcat and starting the service of tomcat.
@@ -594,6 +609,7 @@ In the above code, we are installing the latest version of tomcat and starting t
    become: true
 ```
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/39.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/40.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 From the above code, the role "apache" is being installed on the hosts group local and the role "tomcat" is being installed on the webserver group. 
@@ -602,7 +618,9 @@ From the above code, the role "apache" is being installed on the hosts group loc
 
 **Step 5.**  Execute the playbook from Ansible Control Server which installs apache on the local machine and tomcat on the second compute instance. 
 
-``` ansible-playbook /root/ansible/Package_install.yaml```
+```
+ansible-playbook /root/ansible/Package_install.yaml
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/41.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -612,9 +630,15 @@ From the above output, we can see that Apache is installed on the local machine 
 
 **Step 6.** To validate the packages Apache and tomcat are installed on their respective servers. Login into their respective server and the following command:
 
-```service httpd status (shows status of apache service)```
+```
+service httpd status
+```
+(shows status of apache service)
 
-```service tomcat status ( shows status of tomcat service)```
+```
+service tomcat status
+```
+( shows status of tomcat service)
 
 ## Variables and handlers
 
@@ -637,6 +661,7 @@ password: "AnsibleTutorial"
 ```
  
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/42.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/43.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 
@@ -644,9 +669,12 @@ password: "AnsibleTutorial"
 
 **Step 3.**  Create a new role variables and update "main.yaml" file under tasks directory as follows:
 
-```ansible-galaxy init /root/ansible/roles/variables```
-
-```vi /root/ansible/roles/variables/tasks/main.yaml```
+```
+ansible-galaxy init /root/ansible/roles/variables
+```
+```
+vi /root/ansible/roles/variables/tasks/main.yaml
+```
   
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/44.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -673,7 +701,9 @@ In the above code, since login.yaml file was included in the playbook which is a
 
 **Step 5.** Execute the playbook with the following command 
 
-```ansible-playbook create_user.yaml```
+```
+ansible-playbook create_user.yaml
+```
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/46.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
@@ -689,7 +719,9 @@ In the above code, since login.yaml file was included in the playbook which is a
       name: httpd
       state: restarted
 ```
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/47.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/48.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 8.** We will be maintaining a file using Apache module and if the file changes we will notify the handler to restart Apache service.
@@ -697,6 +729,7 @@ In the above code, since login.yaml file was included in the playbook which is a
 Go to the role Apache and templates folder by entering cd roles/apache/templates/. Create a new file "Sample.j2"  as shown below. j2 is the format of the template that Ansible recognizes. 
 
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/49.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/50.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 
@@ -711,6 +744,7 @@ Go to the role Apache and templates folder by entering cd roles/apache/templates
    notify:
        - restart apache
 ```
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/51.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 **Step 10.** Create a new playbook apache.yaml file under the top folder in the hierarchy with the following code (see screenshot below):
@@ -723,13 +757,17 @@ Go to the role Apache and templates folder by entering cd roles/apache/templates
       - role: apache
    become: true
 ```
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/52.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
+
 ![](https://qloudableassets.blob.core.windows.net/devops/OCI/introduction-to-ansible-playbook/images/53.jpg?st=2019-09-06T10%3A31%3A31Z&se=2022-09-07T10%3A31%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=fwljWymO6LKz5xubtKh3mAsK3r858hNP%2Bl6%2FtadP4MM%3D)
 
 
 **Step 11.** Enter the below command to execute the playbook apache, which installs Apache and configures the file in the location (/etc/Sample.txt). Since this file was configured for the first time, it notifies handler and Apache service is restarted. Subsequent execution of the playbook will not restart the service as there are no changes to the file. 
 
-```ansible-playbook apache.yaml```
+```
+ansible-playbook apache.yaml
+```
 
 **Note:** If the file (Sample.j2) is updated in the templates folder then subseqent runs of ansible will restart apache service
 
