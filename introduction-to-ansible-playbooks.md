@@ -324,9 +324,13 @@ It is always a good practice to back up the default inventory file to reference 
 
 Run the following commands to move and create a new inventory file
 
-```sh
+```
 sudo mv /etc/ansible/hosts /etc/ansible/hosts.orig
+```
+```
 sudo touch /etc/ansible/hosts
+```
+```
 vi /etc/ansible/hosts
 ```
 In this tutorial by default "vi" text editor is used to update files.
@@ -419,7 +423,11 @@ Highlight the SSH key and copy (using the mouse)
 
 ```sh
 sudo su -
+```
+```
 cd /root/.ssh/
+```
+```
 vi authorized_keys​
 ```
 Copy the key into authorized_keys file 
