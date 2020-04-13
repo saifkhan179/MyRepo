@@ -516,7 +516,7 @@ In the above playbook, we are executing the role "create_user" in the local grou
 
 **Step 4.** Execute the following command to run the playbook and create a new user "Sysgain"
 
-```
+```sh
 ansible-playbook /root/ansible/Create_user.yaml
 ```
 
@@ -524,7 +524,7 @@ ansible-playbook /root/ansible/Create_user.yaml
 
 **Step 5.** Hosts section of the playbook is defined as "local" which create's the user in the local server(Ansible Control Machine). To create a user in all the servers mentioned in the ansible inventory file, Update the hosts section to "all" and run the command 
 
-```
+```sh
 ansible-playbook /root/ansible/Create_user.yaml
 ```
 
