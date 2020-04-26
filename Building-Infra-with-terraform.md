@@ -69,7 +69,6 @@ In this Lab we will be going through the various basic concepts of terraform by 
 * **User Name:** {{User Name}}
 * **Password:** {{Password}}
 * **Compartment:**{{Compartment}}
-* **Public_IP_of_VM:**{{InstancePublicIP}}
 
 
 1. Sign in using your tenant name, user name and password. Use the login option under **Oracle Cloud Infrastructure**
@@ -161,7 +160,9 @@ cat oci_api_key.pem
 ```
 curl "https://qloudableassets.blob.core.windows.net/devops/OCI/Terraform/ckey?sp=r&st=2020-02-11T23:40:23Z&se=2022-01-01T07:40:23Z&spr=https&sv=2019-02-02&sr=b&sig=pKQqknoxzn2Xy2Svv%2Bn%2BMJcudaUuSWEso9tm3q81xhY%3D" -o ckey
 ```
-- Now ssh into the machine by running the following command.
+- Now ssh into the machine by running the following command. 
+
+* **Public_IP_of_VM:**{{InstancePublicIP}}
 
 ```
 ssh -i ckey opc@<public_ip_of_the_machine>
